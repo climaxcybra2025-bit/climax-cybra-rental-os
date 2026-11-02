@@ -1,0 +1,1421 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-02 06:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: apps/landlords/models.py:18
+msgid "How rent is paid to this landlord"
+msgstr "نحوه پرداخت اجاره به این مالک"
+
+#: apps/landlords/models.py:47
+msgid "Not decided"
+msgstr "تصمیم گرفته نشده"
+
+#: apps/landlords/models.py:48
+msgid "Renew on current terms"
+msgstr "تمدید با شرایط فعلی"
+
+#: apps/landlords/models.py:49
+msgid "Negotiate"
+msgstr "مذاکره"
+
+#: apps/landlords/models.py:50
+msgid "Extend / new agreement"
+msgstr "تمدید / قرارداد جدید"
+
+#: apps/landlords/models.py:51
+msgid "Do not renew"
+msgstr "تمدید نشود"
+
+#: apps/landlords/models.py:52
+msgid "Need more time"
+msgstr "زمان بیشتری لازم است"
+
+#: apps/landlords/models.py:60
+msgid "Leave empty for month-to-month"
+msgstr "برای قرارداد ماه‌به‌ماه خالی بگذارید"
+
+#: apps/landlords/models.py:66
+msgid "Written consent to sublet is on file"
+msgstr "رضایت کتبی برای اجاره مجدد موجود است"
+
+#: apps/operations/models.py:14
+msgid "Plumbing"
+msgstr "لوله‌کشی"
+
+#: apps/operations/models.py:15
+msgid "Electrical"
+msgstr "برق"
+
+#: apps/operations/models.py:16
+msgid "Heating"
+msgstr "گرمایش"
+
+#: apps/operations/models.py:17
+msgid "Laundry"
+msgstr "لباسشویی"
+
+#: apps/operations/models.py:18
+msgid "Appliance"
+msgstr "لوازم خانگی"
+
+#: apps/operations/models.py:19
+msgid "Internet"
+msgstr "اینترنت"
+
+#: apps/operations/models.py:20
+msgid "Furniture"
+msgstr "مبلمان"
+
+#: apps/operations/models.py:21
+msgid "Cleaning"
+msgstr "نظافت"
+
+#: apps/operations/models.py:22
+msgid "Safety"
+msgstr "ایمنی"
+
+#: apps/operations/models.py:23
+msgid "Housemate / noise"
+msgstr "هم‌خانه / سروصدا"
+
+#: apps/operations/models.py:24 apps/people/models.py:32
+#: apps/records/models.py:32 apps/records/models.py:63
+#: apps/tenancies/models.py:127
+msgid "Other"
+msgstr "سایر"
+
+#: apps/operations/models.py:27
+msgid "Urgent"
+msgstr "فوری"
+
+#: apps/operations/models.py:28
+msgid "Not urgent"
+msgstr "غیرفوری"
+
+#: apps/operations/models.py:31
+msgid "Open"
+msgstr "باز"
+
+#: apps/operations/models.py:32 apps/operations/models.py:84
+msgid "Scheduled"
+msgstr "برنامه‌ریزی شده"
+
+#: apps/operations/models.py:33
+msgid "In progress"
+msgstr "در حال انجام"
+
+#: apps/operations/models.py:34 apps/operations/models.py:87
+msgid "Completed"
+msgstr "انجام شده"
+
+#: apps/operations/models.py:35 apps/people/models.py:24
+msgid "Closed"
+msgstr "بسته شده"
+
+#: apps/operations/models.py:63
+msgid "Move-in"
+msgstr "ورود"
+
+#: apps/operations/models.py:64
+msgid "Move-out"
+msgstr "خروج"
+
+#: apps/operations/models.py:65
+msgid "Routine"
+msgstr "دوره‌ای"
+
+#: apps/operations/models.py:66
+msgid "Turnover cleaning check"
+msgstr "بررسی نظافت بین دو مستأجر"
+
+#: apps/operations/models.py:85
+msgid "Reminder sent"
+msgstr "یادآوری ارسال شد"
+
+#: apps/operations/models.py:86
+msgid "Proof received"
+msgstr "مدرک دریافت شد"
+
+#: apps/operations/models.py:88
+msgid "Swapped"
+msgstr "جابه‌جا شد"
+
+#: apps/operations/models.py:89
+msgid "Worker assigned"
+msgstr "نیروی خدماتی تعیین شد"
+
+#: apps/operations/models.py:90
+msgid "Missed"
+msgstr "انجام نشد"
+
+#: apps/people/models.py:12
+msgid "New inquiry"
+msgstr "درخواست جدید"
+
+#: apps/people/models.py:13
+msgid "Pre-screening"
+msgstr "بررسی اولیه"
+
+#: apps/people/models.py:14
+msgid "Pre-screening passed"
+msgstr "بررسی اولیه تأیید شد"
+
+#: apps/people/models.py:15
+msgid "Application pending"
+msgstr "در انتظار درخواست"
+
+#: apps/people/models.py:16
+msgid "Documents pending"
+msgstr "در انتظار مدارک"
+
+#: apps/people/models.py:17
+msgid "Deposit pending"
+msgstr "در انتظار ودیعه"
+
+#: apps/people/models.py:18
+msgid "Agreement pending"
+msgstr "در انتظار قرارداد"
+
+#: apps/people/models.py:19
+msgid "Ready for check-in"
+msgstr "آماده ورود"
+
+#: apps/people/models.py:20
+msgid "Active tenant"
+msgstr "مستأجر فعال"
+
+#: apps/people/models.py:21 apps/tenancies/models.py:33
+msgid "Notice given"
+msgstr "اعلام تخلیه شده"
+
+#: apps/people/models.py:22
+msgid "Moved out"
+msgstr "خارج شده"
+
+#: apps/people/models.py:23
+msgid "Deposit review"
+msgstr "بررسی ودیعه"
+
+#: apps/people/models.py:25
+msgid "Declined"
+msgstr "رد شده"
+
+#: apps/people/models.py:28
+msgid "Lead / tenant / guest"
+msgstr "متقاضی / مستأجر / مهمان"
+
+#: apps/people/models.py:29 apps/workspaces/models.py:51
+msgid "Cleaner"
+msgstr "نظافتچی"
+
+#: apps/people/models.py:30
+msgid "Technician / contractor"
+msgstr "تکنسین / پیمانکار"
+
+#: apps/people/models.py:31
+msgid "City or government contact"
+msgstr "تماس شهرداری یا دولتی"
+
+#: apps/people/models.py:41
+msgid "Login for the tenant portal"
+msgstr "ورود به پرتال مستأجر"
+
+#: apps/people/models.py:49
+msgid "Airbnb, Booking.com, Facebook, referral..."
+msgstr "Airbnb، Booking.com، فیسبوک، معرفی..."
+
+#: apps/people/models.py:54
+msgid "Kept even after the ID image is purged"
+msgstr "حتی پس از حذف تصویر کارت شناسایی نگه داشته می‌شود"
+
+#: apps/portal/views.py:22
+msgid "Photos or video"
+msgstr "عکس یا ویدیو"
+
+#: apps/portal/views.py:28
+msgid "What is the problem?"
+msgstr "مشکل چیست؟"
+
+#: apps/portal/views.py:29 templates/web/detail.html:16
+msgid "Details"
+msgstr "جزئیات"
+
+#: apps/portal/views.py:30
+msgid "How urgent is it?"
+msgstr "چقدر فوری است؟"
+
+#: apps/portal/views.py:36 apps/web/resources.py:322 apps/web/resources.py:352
+msgid "Amount"
+msgstr "مبلغ"
+
+#: apps/portal/views.py:37
+msgid "Paid on"
+msgstr "تاریخ پرداخت"
+
+#: apps/portal/views.py:39
+msgid "For"
+msgstr "بابت"
+
+#: apps/portal/views.py:42
+msgid "Method"
+msgstr "روش پرداخت"
+
+#: apps/portal/views.py:43
+msgid "Screenshot or receipt"
+msgstr "اسکرین‌شات یا رسید"
+
+#: apps/portal/views.py:101
+msgid "You have no active tenancy, so tickets cannot be opened."
+msgstr "اجاره فعالی ندارید، بنابراین امکان ثبت تیکت نیست."
+
+#: apps/portal/views.py:114
+msgid "Urgent ticket sent. Our team has been emailed."
+msgstr "تیکت فوری ارسال شد. به تیم ما ایمیل شد."
+
+#: apps/portal/views.py:116
+msgid "Ticket sent. We will get back to you."
+msgstr "تیکت ارسال شد. به‌زودی پاسخ می‌دهیم."
+
+#: apps/portal/views.py:125
+msgid "You have no active tenancy."
+msgstr "اجاره فعالی ندارید."
+
+#: apps/portal/views.py:140
+msgid "Submitted by tenant from the portal"
+msgstr "ثبت شده توسط مستأجر از پرتال"
+
+#: apps/portal/views.py:143
+msgid ""
+"Thanks. Your payment proof was received and will be confirmed by the team."
+msgstr "ممنون. رسید پرداخت شما دریافت شد و پس از بررسی تأیید می‌شود."
+
+#: apps/properties/models.py:12
+msgid "Mixed"
+msgstr "مختلط"
+
+#: apps/properties/models.py:13
+msgid "Female only"
+msgstr "فقط خانم‌ها"
+
+#: apps/properties/models.py:14
+msgid "Male only"
+msgstr "فقط آقایان"
+
+#: apps/properties/models.py:17
+msgid "Short and long stays"
+msgstr "اقامت کوتاه و بلند"
+
+#: apps/properties/models.py:18
+msgid "Long stays only"
+msgstr "فقط اقامت بلندمدت"
+
+#: apps/properties/models.py:19
+msgid "Short stays only"
+msgstr "فقط اقامت کوتاه‌مدت"
+
+#: apps/properties/models.py:25
+msgid "Province, state or prefecture"
+msgstr "استان یا ایالت"
+
+#: apps/properties/models.py:53
+msgid "Whole unit"
+msgstr "کل واحد"
+
+#: apps/properties/models.py:54
+msgid "Room"
+msgstr "اتاق"
+
+#: apps/properties/models.py:55
+msgid "Bed"
+msgstr "تخت"
+
+#: apps/properties/models.py:56
+msgid "Couch"
+msgstr "مبل‌تخت"
+
+#: apps/properties/models.py:57
+msgid "Other space"
+msgstr "فضای دیگر"
+
+#: apps/properties/models.py:60
+msgid "Private / ensuite"
+msgstr "اختصاصی"
+
+#: apps/properties/models.py:61
+msgid "Shared"
+msgstr "مشترک"
+
+#: apps/properties/models.py:64
+msgid "Available"
+msgstr "خالی"
+
+#: apps/properties/models.py:65
+msgid "Advertised"
+msgstr "آگهی شده"
+
+#: apps/properties/models.py:66
+msgid "On hold"
+msgstr "رزرو موقت"
+
+#: apps/properties/models.py:67
+msgid "Rented"
+msgstr "اجاره داده شده"
+
+#: apps/properties/models.py:68
+msgid "Turnover / cleaning"
+msgstr "در حال نظافت"
+
+#: apps/properties/models.py:69
+msgid "Blocked"
+msgstr "مسدود"
+
+#: apps/properties/models.py:99
+msgid "Parent space must be in the same property."
+msgstr "فضای والد باید در همان ملک باشد."
+
+#: apps/properties/models.py:101
+msgid "A space cannot be its own parent."
+msgstr "یک فضا نمی‌تواند والد خودش باشد."
+
+#: apps/properties/models.py:103
+msgid "Property belongs to another workspace."
+msgstr "این ملک متعلق به شرکت دیگری است."
+
+#: apps/records/models.py:25
+msgid "Payment slip / receipt"
+msgstr "رسید پرداخت"
+
+#: apps/records/models.py:26
+msgid "ID document"
+msgstr "مدرک شناسایی"
+
+#: apps/records/models.py:27
+msgid "Agreement / contract"
+msgstr "قرارداد"
+
+#: apps/records/models.py:28
+msgid "Chat screenshot"
+msgstr "اسکرین‌شات چت"
+
+#: apps/records/models.py:29
+msgid "Photo / video"
+msgstr "عکس / ویدیو"
+
+#: apps/records/models.py:30
+msgid "Letter / email"
+msgstr "نامه / ایمیل"
+
+#: apps/records/models.py:31
+msgid "Invoice"
+msgstr "فاکتور"
+
+#: apps/records/models.py:43
+msgid "Only set when privacy law limits retention, e.g. ID images"
+msgstr ""
+"فقط وقتی قانون حریم خصوصی مدت نگهداری را محدود می‌کند، مثلاً تصویر کارت "
+"شناسایی"
+
+#: apps/records/models.py:58 apps/web/resources.py:161
+#: apps/web/resources.py:179 apps/web/resources.py:191
+msgid "Landlord"
+msgstr "صاحبخانه"
+
+#: apps/records/models.py:59
+msgid "City / municipality"
+msgstr "شهرداری"
+
+#: apps/records/models.py:60
+msgid "Government office"
+msgstr "اداره دولتی"
+
+#: apps/records/models.py:61
+msgid "Strata / building"
+msgstr "مدیریت ساختمان"
+
+#: apps/records/models.py:62 apps/web/resources.py:272
+#: apps/workspaces/models.py:52
+msgid "Tenant"
+msgstr "مستأجر"
+
+#: apps/records/models.py:66 apps/web/resources.py:163
+#: apps/web/resources.py:234
+msgid "Email"
+msgstr "ایمیل"
+
+#: apps/records/models.py:67
+msgid "Chat"
+msgstr "چت"
+
+#: apps/records/models.py:68
+msgid "Phone call"
+msgstr "تماس تلفنی"
+
+#: apps/records/models.py:69
+msgid "Letter"
+msgstr "نامه"
+
+#: apps/records/models.py:70
+msgid "In person"
+msgstr "حضوری"
+
+#: apps/records/models.py:73 apps/tenancies/models.py:114
+msgid "Received"
+msgstr "دریافتی"
+
+#: apps/records/models.py:74 apps/tenancies/models.py:181
+msgid "Sent"
+msgstr "ارسال شده"
+
+#: apps/records/models.py:77
+msgid "No reply needed"
+msgstr "نیاز به پاسخ ندارد"
+
+#: apps/records/models.py:78
+msgid "Needs reply"
+msgstr "نیاز به پاسخ"
+
+#: apps/records/models.py:79
+msgid "Replied"
+msgstr "پاسخ داده شد"
+
+#: apps/records/models.py:80
+msgid "Waiting for them"
+msgstr "منتظر پاسخ آن‌ها"
+
+#: apps/records/models.py:99
+msgid "Email Message-ID, for dedupe"
+msgstr "شناسه ایمیل، برای جلوگیری از تکرار"
+
+#: apps/records/models.py:120
+msgid "Reminder"
+msgstr "یادآوری"
+
+#: apps/records/models.py:121
+msgid "Warning"
+msgstr "اخطار"
+
+#: apps/records/models.py:122 apps/web/resources.py:472
+msgid "Incident"
+msgstr "حادثه"
+
+#: apps/tenancies/models.py:26
+msgid "Short stay (nightly)"
+msgstr "اقامت کوتاه (شبانه)"
+
+#: apps/tenancies/models.py:27
+msgid "Fixed term"
+msgstr "مدت معین"
+
+#: apps/tenancies/models.py:28
+msgid "Month to month"
+msgstr "ماه‌به‌ماه"
+
+#: apps/tenancies/models.py:31
+msgid "Reserved"
+msgstr "رزرو شده"
+
+#: apps/tenancies/models.py:32
+msgid "Active"
+msgstr "فعال"
+
+#: apps/tenancies/models.py:34
+msgid "Ended"
+msgstr "پایان یافته"
+
+#: apps/tenancies/models.py:35
+msgid "Cancelled"
+msgstr "لغو شده"
+
+#: apps/tenancies/models.py:42
+msgid "Check-out date; empty for open-ended"
+msgstr "تاریخ خروج؛ برای نامحدود خالی بگذارید"
+
+#: apps/tenancies/models.py:45
+msgid "per night"
+msgstr "هر شب"
+
+#: apps/tenancies/models.py:45
+msgid "per month"
+msgstr "ماهانه"
+
+#: apps/tenancies/models.py:45
+msgid "total"
+msgstr "کل"
+
+#: apps/tenancies/models.py:49
+msgid "airbnb, booking, direct, facebook..."
+msgstr "airbnb، booking، مستقیم، فیسبوک..."
+
+#: apps/tenancies/models.py:105
+msgid "Check-out must be after check-in."
+msgstr "تاریخ خروج باید بعد از تاریخ ورود باشد."
+
+#: apps/tenancies/models.py:107
+msgid ""
+"These dates overlap another booking on this space or a space inside it."
+msgstr "این تاریخ‌ها با رزرو دیگری روی این فضا یا فضای داخل آن تداخل دارد."
+
+#: apps/tenancies/models.py:115
+msgid "Paid"
+msgstr "پرداختی"
+
+#: apps/tenancies/models.py:118 apps/web/resources.py:194
+#: apps/web/resources.py:277 templates/portal/home.html:21
+msgid "Rent"
+msgstr "اجاره"
+
+#: apps/tenancies/models.py:119
+msgid "Deposit"
+msgstr "ودیعه"
+
+#: apps/tenancies/models.py:120
+msgid "Guest fee"
+msgstr "هزینه مهمان"
+
+#: apps/tenancies/models.py:121
+msgid "Cleaning charge"
+msgstr "هزینه نظافت"
+
+#: apps/tenancies/models.py:122
+msgid "Damage charge"
+msgstr "هزینه خسارت"
+
+#: apps/tenancies/models.py:123
+msgid "Cancellation fee"
+msgstr "هزینه لغو"
+
+#: apps/tenancies/models.py:124
+msgid "Refund"
+msgstr "بازپرداخت"
+
+#: apps/tenancies/models.py:125
+msgid "Rent to landlord"
+msgstr "اجاره به صاحبخانه"
+
+#: apps/tenancies/models.py:126
+msgid "Deposit to landlord"
+msgstr "ودیعه به صاحبخانه"
+
+#: apps/tenancies/models.py:130
+msgid "Pending review"
+msgstr "در انتظار بررسی"
+
+#: apps/tenancies/models.py:131
+msgid "Confirmed"
+msgstr "تأیید شده"
+
+#: apps/tenancies/models.py:132
+msgid "Rejected"
+msgstr "رد شده"
+
+#: apps/tenancies/models.py:140
+msgid "First day of the month this payment covers"
+msgstr "روز اول ماهی که این پرداخت مربوط به آن است"
+
+#: apps/tenancies/models.py:142
+msgid "e-transfer, cash, card, bank transfer..."
+msgstr "ای‌ترنسفر، نقد، کارت، حواله بانکی..."
+
+#: apps/tenancies/models.py:175
+msgid "Rental agreement"
+msgstr "قرارداد اجاره"
+
+#: apps/tenancies/models.py:176 templates/portal/home.html:24
+msgid "House rules"
+msgstr "قوانین خانه"
+
+#: apps/tenancies/models.py:177
+msgid "Addendum"
+msgstr "الحاقیه"
+
+#: apps/tenancies/models.py:180
+msgid "Draft"
+msgstr "پیش‌نویس"
+
+#: apps/tenancies/models.py:182
+msgid "Viewed"
+msgstr "دیده شده"
+
+#: apps/tenancies/models.py:183 apps/web/resources.py:362
+msgid "Signed"
+msgstr "امضا شده"
+
+#: apps/tenancies/models.py:184
+msgid "Void"
+msgstr "باطل"
+
+#: apps/web/forms.py:38
+msgid "Attach files"
+msgstr "پیوست فایل"
+
+#: apps/web/forms.py:38
+msgid "Receipts, screenshots, photos, letters"
+msgstr "رسیدها، اسکرین‌شات‌ها، عکس‌ها، نامه‌ها"
+
+#: apps/web/forms.py:40 apps/web/forms.py:103
+msgid "File type"
+msgstr "نوع فایل"
+
+#: apps/web/forms.py:102 templates/web/detail.html:21
+msgid "Files"
+msgstr "فایل‌ها"
+
+#: apps/web/forms.py:104
+msgid "Description"
+msgstr "توضیحات"
+
+#: apps/web/resources.py:73
+msgid "Properties"
+msgstr "ملک‌ها"
+
+#: apps/web/resources.py:74 apps/web/resources.py:122
+#: apps/web/resources.py:190 apps/web/resources.py:375
+#: apps/web/resources.py:421 apps/web/resources.py:478
+msgid "Property"
+msgstr "ملک"
+
+#: apps/web/resources.py:77 apps/web/resources.py:121
+#: apps/web/resources.py:163 apps/web/resources.py:179
+#: apps/web/resources.py:231 apps/web/resources.py:442
+msgid "Name"
+msgstr "نام"
+
+#: apps/web/resources.py:78
+msgid "City"
+msgstr "شهر"
+
+#: apps/web/resources.py:79
+msgid "Country"
+msgstr "کشور"
+
+#: apps/web/resources.py:80
+msgid "House type"
+msgstr "نوع خانه"
+
+#: apps/web/resources.py:81
+msgid "Stays"
+msgstr "نوع اقامت"
+
+#: apps/web/resources.py:82 apps/web/resources.py:117
+msgid "Spaces"
+msgstr "فضاها"
+
+#: apps/web/resources.py:105
+msgid "Rooms, beds and spaces"
+msgstr "اتاق‌ها، تخت‌ها و فضاها"
+
+#: apps/web/resources.py:106
+msgid "Leases with landlords"
+msgstr "قراردادها با صاحبخانه"
+
+#: apps/web/resources.py:107 apps/web/resources.py:153
+#: apps/web/resources.py:259 apps/web/resources.py:370
+msgid "Tickets"
+msgstr "تیکت‌ها"
+
+#: apps/web/resources.py:108 apps/web/resources.py:416
+msgid "Cleaning roster"
+msgstr "برنامه نظافت"
+
+#: apps/web/resources.py:109 apps/web/resources.py:169
+#: apps/web/resources.py:219 apps/web/resources.py:261
+#: apps/web/resources.py:435 apps/web/resources.py:436
+msgid "Correspondence"
+msgstr "مکاتبات"
+
+#: apps/web/resources.py:110 apps/web/resources.py:308
+#: apps/web/resources.py:471
+msgid "Incidents and warnings"
+msgstr "حوادث و اخطارها"
+
+#: apps/web/resources.py:118 apps/web/resources.py:273
+#: apps/web/resources.py:376 apps/web/resources.py:409
+msgid "Space"
+msgstr "فضا"
+
+#: apps/web/resources.py:123 apps/web/resources.py:236
+#: apps/web/resources.py:274 apps/web/resources.py:362
+#: apps/web/resources.py:409 apps/web/resources.py:476
+msgid "Type"
+msgstr "نوع"
+
+#: apps/web/resources.py:124
+msgid "Inside"
+msgstr "داخل"
+
+#: apps/web/resources.py:125
+msgid "Bathroom"
+msgstr "حمام"
+
+#: apps/web/resources.py:126
+msgid "Monthly"
+msgstr "ماهانه"
+
+#: apps/web/resources.py:127
+msgid "Nightly"
+msgstr "شبانه"
+
+#: apps/web/resources.py:128 apps/web/resources.py:280
+#: apps/web/resources.py:326 apps/web/resources.py:362
+#: apps/web/resources.py:379 apps/web/resources.py:424
+#: apps/web/resources.py:445
+msgid "Status"
+msgstr "وضعیت"
+
+#: apps/web/resources.py:151
+msgid "Bookings and tenancies"
+msgstr "رزروها و اجاره‌ها"
+
+#: apps/web/resources.py:152 apps/web/resources.py:307
+#: apps/web/resources.py:406
+msgid "Inspections"
+msgstr "بازدیدها"
+
+#: apps/web/resources.py:160
+msgid "Landlords"
+msgstr "صاحبخانه‌ها"
+
+#: apps/web/resources.py:163
+msgid "Company"
+msgstr "شرکت"
+
+#: apps/web/resources.py:163 apps/web/resources.py:179
+#: apps/web/resources.py:233
+msgid "Phone"
+msgstr "تلفن"
+
+#: apps/web/resources.py:167
+msgid "Representatives"
+msgstr "نمایندگان"
+
+#: apps/web/resources.py:168 apps/web/resources.py:186
+msgid "Leases"
+msgstr "قراردادهای اجاره"
+
+#: apps/web/resources.py:176
+msgid "Landlord representatives"
+msgstr "نمایندگان صاحبخانه"
+
+#: apps/web/resources.py:177
+msgid "Representative"
+msgstr "نماینده"
+
+#: apps/web/resources.py:179
+msgid "Role"
+msgstr "نقش"
+
+#: apps/web/resources.py:187 apps/web/resources.py:325
+msgid "Lease"
+msgstr "قرارداد اجاره"
+
+#: apps/web/resources.py:192
+msgid "Ends"
+msgstr "پایان"
+
+#: apps/web/resources.py:193
+msgid "Days left"
+msgstr "روزهای باقی‌مانده"
+
+#: apps/web/resources.py:195 apps/web/resources.py:323
+msgid "Currency"
+msgstr "واحد پول"
+
+#: apps/web/resources.py:196
+msgid "Sublet consent"
+msgstr "رضایت اجاره مجدد"
+
+#: apps/web/resources.py:197
+msgid "Renewal"
+msgstr "تمدید"
+
+#: apps/web/resources.py:218
+msgid "Payments to landlord"
+msgstr "پرداخت‌ها به صاحبخانه"
+
+#: apps/web/resources.py:220
+msgid "Incidents"
+msgstr "حوادث"
+
+#: apps/web/resources.py:227
+msgid "Tenants and contacts"
+msgstr "مستأجران و مخاطبان"
+
+#: apps/web/resources.py:228 apps/web/resources.py:422
+msgid "Person"
+msgstr "شخص"
+
+#: apps/web/resources.py:232
+msgid "Stage"
+msgstr "مرحله"
+
+#: apps/web/resources.py:235
+msgid "Source"
+msgstr "منبع"
+
+#: apps/web/resources.py:258 apps/web/resources.py:268
+msgid "Tenancies and bookings"
+msgstr "اجاره‌ها و رزروها"
+
+#: apps/web/resources.py:260
+msgid "Cleaning duties"
+msgstr "نوبت‌های نظافت"
+
+#: apps/web/resources.py:269 apps/web/resources.py:324
+#: apps/web/resources.py:352 apps/web/resources.py:362
+#: apps/web/resources.py:409 apps/web/resources.py:479
+msgid "Tenancy"
+msgstr "اجاره"
+
+#: apps/web/resources.py:275
+msgid "Check-in"
+msgstr "ورود"
+
+#: apps/web/resources.py:276
+msgid "Check-out"
+msgstr "خروج"
+
+#: apps/web/resources.py:278
+msgid "Per"
+msgstr "به ازای"
+
+#: apps/web/resources.py:279 apps/web/resources.py:443
+msgid "Channel"
+msgstr "کانال"
+
+#: apps/web/resources.py:304 apps/web/resources.py:315
+msgid "Payments"
+msgstr "پرداخت‌ها"
+
+#: apps/web/resources.py:305 apps/web/resources.py:359
+msgid "Agreements"
+msgstr "قراردادها"
+
+#: apps/web/resources.py:306 apps/web/resources.py:349
+msgid "Deposit deductions"
+msgstr "کسورات ودیعه"
+
+#: apps/web/resources.py:316
+msgid "Payment"
+msgstr "پرداخت"
+
+#: apps/web/resources.py:319 apps/web/resources.py:409
+#: apps/web/resources.py:420 apps/web/resources.py:439
+#: apps/web/resources.py:475
+msgid "Date"
+msgstr "تاریخ"
+
+#: apps/web/resources.py:320
+msgid "In/out"
+msgstr "ورودی/خروجی"
+
+#: apps/web/resources.py:321
+msgid "Purpose"
+msgstr "بابت"
+
+#: apps/web/resources.py:350
+msgid "Deduction"
+msgstr "کسر"
+
+#: apps/web/resources.py:352
+msgid "Reason"
+msgstr "دلیل"
+
+#: apps/web/resources.py:360
+msgid "Agreement"
+msgstr "قرارداد"
+
+#: apps/web/resources.py:371
+msgid "Ticket"
+msgstr "تیکت"
+
+#: apps/web/resources.py:374
+msgid "Title"
+msgstr "عنوان"
+
+#: apps/web/resources.py:377
+msgid "Priority"
+msgstr "اولویت"
+
+#: apps/web/resources.py:378
+msgid "Category"
+msgstr "دسته"
+
+#: apps/web/resources.py:380 templates/portal/ticket.html:8
+msgid "Opened"
+msgstr "تاریخ ثبت"
+
+#: apps/web/resources.py:407
+msgid "Inspection"
+msgstr "بازدید"
+
+#: apps/web/resources.py:417
+msgid "Cleaning duty"
+msgstr "نوبت نظافت"
+
+#: apps/web/resources.py:423
+msgid "Areas"
+msgstr "قسمت‌ها"
+
+#: apps/web/resources.py:425
+msgid "Charge"
+msgstr "هزینه"
+
+#: apps/web/resources.py:440
+msgid "Subject"
+msgstr "موضوع"
+
+#: apps/web/resources.py:441
+msgid "With"
+msgstr "با"
+
+#: apps/web/resources.py:444
+msgid "Direction"
+msgstr "جهت"
+
+#: apps/web/resources.py:446
+msgid "Deadline"
+msgstr "مهلت"
+
+#: apps/web/resources.py:477
+msgid "Issue"
+msgstr "موضوع"
+
+#: apps/web/resources.py:480
+msgid "Follow up"
+msgstr "پیگیری"
+
+#: apps/web/resources.py:502
+msgid "Portfolio"
+msgstr "املاک"
+
+#: apps/web/resources.py:503
+msgid "Tenants"
+msgstr "مستأجران"
+
+#: apps/web/resources.py:504
+msgid "Operations"
+msgstr "عملیات"
+
+#: apps/web/templatetags/web_tags.py:96
+msgid "Yes"
+msgstr "بله"
+
+#: apps/web/templatetags/web_tags.py:96
+msgid "No"
+msgstr "خیر"
+
+#: apps/web/views.py:201
+msgid "Saved."
+msgstr "ذخیره شد."
+
+#: apps/web/views.py:239
+msgid "Archived. The record and its history are kept."
+msgstr "بایگانی شد. اطلاعات و سابقه آن حفظ می‌شود."
+
+#: apps/web/views.py:259
+msgid "Files attached."
+msgstr "فایل‌ها پیوست شد."
+
+#: apps/web/views.py:261
+msgid "Choose at least one file."
+msgstr "حداقل یک فایل انتخاب کنید."
+
+#: apps/web/views.py:283
+msgid "Payment confirmed."
+msgstr "پرداخت تأیید شد."
+
+#: apps/workspaces/models.py:17
+msgid "ISO 3166-1 alpha-2, e.g. CA, US, JP"
+msgstr "کد دوحرفی کشور، مثلاً CA، US، JP"
+
+#: apps/workspaces/models.py:18
+msgid "ISO 4217, e.g. CAD, USD, JPY"
+msgstr "کد واحد پول، مثلاً CAD، USD، JPY"
+
+#: apps/workspaces/models.py:24
+msgid ""
+"Jurisdiction rule pack, e.g. ca-bc. Drives deposit, notice and short-stay "
+"checks."
+msgstr ""
+"مجموعه قوانین منطقه، مثلاً ca-bc. برای کنترل ودیعه، اخطار و اقامت کوتاه."
+
+#: apps/workspaces/models.py:26
+msgid "After-hours number shown to tenants"
+msgstr "شماره اضطراری خارج از ساعت کاری که به مستأجران نمایش داده می‌شود"
+
+#: apps/workspaces/models.py:28
+msgid "Comma-separated emails that receive urgent tickets"
+msgstr "ایمیل‌هایی که تیکت‌های فوری را دریافت می‌کنند (با کاما جدا کنید)"
+
+#: apps/workspaces/models.py:47
+msgid "Owner"
+msgstr "مالک"
+
+#: apps/workspaces/models.py:48
+msgid "Admin"
+msgstr "مدیر"
+
+#: apps/workspaces/models.py:49
+msgid "Partner"
+msgstr "شریک"
+
+#: apps/workspaces/models.py:50
+msgid "Team member"
+msgstr "عضو تیم"
+
+#: templates/partials_lang.html:4
+msgid "Language"
+msgstr "زبان"
+
+#: templates/portal/home.html:2
+msgid "My home"
+msgstr "خانه من"
+
+#: templates/portal/home.html:4
+#, python-format
+msgid "Hi %(name)s"
+msgstr "سلام %(name)s"
+
+#: templates/portal/home.html:8
+msgid "Emergency after hours (fire, flood, no heat, security)"
+msgstr ""
+"شرایط اضطراری خارج از ساعت کاری (آتش‌سوزی، آب‌گرفتگی، قطع گرمایش، امنیت)"
+
+#: templates/portal/home.html:10
+msgid "For a life-threatening emergency call 911 first."
+msgstr "در شرایط تهدیدکننده جان، ابتدا با 911 تماس بگیرید."
+
+#: templates/portal/home.html:16
+msgid "My place"
+msgstr "محل اقامت من"
+
+#: templates/portal/home.html:18
+msgid "Address"
+msgstr "آدرس"
+
+#: templates/portal/home.html:19
+msgid "Room / space"
+msgstr "اتاق / فضا"
+
+#: templates/portal/home.html:20
+msgid "Stay"
+msgstr "مدت اقامت"
+
+#: templates/portal/home.html:20
+msgid "open-ended"
+msgstr "نامحدود"
+
+#: templates/portal/home.html:29
+msgid "Report a problem"
+msgstr "گزارش مشکل"
+
+#: templates/portal/home.html:33
+msgid ""
+"Urgent means a risk to safety or property right now, such as a leak, no "
+"heat, a broken lock or no power. Urgent tickets email our team immediately."
+msgstr ""
+"فوری یعنی همین الان خطری برای ایمنی یا ملک وجود دارد، مثل نشت آب، قطع "
+"گرمایش، قفل خراب یا قطع برق. تیکت فوری بلافاصله به تیم ما ایمیل می‌شود."
+
+#: templates/portal/home.html:34
+msgid "Send ticket"
+msgstr "ارسال تیکت"
+
+#: templates/portal/home.html:36
+msgid "Tickets open once your stay is active."
+msgstr "ثبت تیکت پس از شروع اقامت شما فعال می‌شود."
+
+#: templates/portal/home.html:40
+msgid "My tickets"
+msgstr "تیکت‌های من"
+
+#: templates/portal/home.html:42
+msgid "No tickets yet."
+msgstr "هنوز تیکتی ندارید."
+
+#: templates/portal/home.html:47
+msgid "Send a payment proof"
+msgstr "ارسال رسید پرداخت"
+
+#: templates/portal/home.html:51
+msgid "Send"
+msgstr "ارسال"
+
+#: templates/portal/home.html:56
+msgid "My payments"
+msgstr "پرداخت‌های من"
+
+#: templates/portal/home.html:58
+msgid "No payments recorded yet."
+msgstr "هنوز پرداختی ثبت نشده است."
+
+#: templates/portal/home.html:59
+msgid "My cleaning turns"
+msgstr "نوبت‌های نظافت من"
+
+#: templates/portal/layout.html:6 templates/web/layout.html:24
+#: templates/web/no_workspace.html:2
+msgid "Sign out"
+msgstr "خروج"
+
+#: templates/portal/not_linked.html:2
+msgid "Almost there"
+msgstr "تقریباً تمام است"
+
+#: templates/portal/not_linked.html:2
+msgid ""
+"Your login is not linked to a tenant profile yet. Please contact the office."
+msgstr ""
+"حساب شما هنوز به پرونده مستأجر متصل نشده است. لطفاً با دفتر تماس بگیرید."
+
+#: templates/portal/ticket.html:3
+msgid "Back"
+msgstr "بازگشت"
+
+#: templates/portal/ticket.html:8
+msgid "Visit planned"
+msgstr "زمان بازدید"
+
+#: templates/registration/login.html:2 templates/registration/login.html:10
+msgid "Sign in"
+msgstr "ورود"
+
+#: templates/registration/login.html:5
+msgid "Sign in to your workspace"
+msgstr "ورود به حساب شرکت"
+
+#: templates/registration/login.html:6
+msgid "Wrong username or password."
+msgstr "نام کاربری یا رمز عبور اشتباه است."
+
+#: templates/registration/login.html:7
+msgid "Username or email"
+msgstr "نام کاربری یا ایمیل"
+
+#: templates/registration/login.html:8
+msgid "Password"
+msgstr "رمز عبور"
+
+#: templates/registration/login.html:11
+msgid "Forgot password?"
+msgstr "رمز عبور را فراموش کرده‌اید؟"
+
+#: templates/web/dashboard.html:2 templates/web/dashboard.html:5
+#: templates/web/layout.html:7
+msgid "Dashboard"
+msgstr "داشبورد"
+
+#: templates/web/dashboard.html:7
+msgid "Record payment"
+msgstr "ثبت پرداخت"
+
+#: templates/web/dashboard.html:8
+msgid "New ticket"
+msgstr "تیکت جدید"
+
+#: templates/web/dashboard.html:9
+msgid "New booking"
+msgstr "رزرو جدید"
+
+#: templates/web/dashboard.html:14
+msgid "Rentable spaces"
+msgstr "فضاهای قابل اجاره"
+
+#: templates/web/dashboard.html:15
+msgid "Occupancy"
+msgstr "درصد اشغال"
+
+#: templates/web/dashboard.html:15
+#, python-format
+msgid "%(occupied)s rented"
+msgstr "%(occupied)s اجاره داده شده"
+
+#: templates/web/dashboard.html:16 templates/web/dashboard.html:35
+msgid "Open tickets"
+msgstr "تیکت‌های باز"
+
+#: templates/web/dashboard.html:16
+#, python-format
+msgid "%(urgent_count)s urgent"
+msgstr "%(urgent_count)s فوری"
+
+#: templates/web/dashboard.html:17
+msgid "Payments to review"
+msgstr "پرداخت‌های در انتظار بررسی"
+
+#: templates/web/dashboard.html:21
+msgid "Spaces by status"
+msgstr "فضاها بر اساس وضعیت"
+
+#: templates/web/dashboard.html:27
+msgid "Leases ending in the next 90 days"
+msgstr "قراردادهایی که تا ۹۰ روز آینده تمام می‌شوند"
+
+#: templates/web/dashboard.html:30
+#, python-format
+msgid "%(days)s day"
+msgid_plural "%(days)s days"
+msgstr[0] "%(days)s روز"
+msgstr[1] "%(days)s روز"
+
+#: templates/web/dashboard.html:32
+msgid "No leases ending soon."
+msgstr "قراردادی به‌زودی تمام نمی‌شود."
+
+#: templates/web/dashboard.html:39
+msgid "No open tickets."
+msgstr "تیکت بازی وجود ندارد."
+
+#: templates/web/dashboard.html:42
+msgid "Arrivals and departures, next 7 days"
+msgstr "ورود و خروج‌ها، ۷ روز آینده"
+
+#: templates/web/dashboard.html:44
+msgid "in"
+msgstr "ورود"
+
+#: templates/web/dashboard.html:45
+msgid "out"
+msgstr "خروج"
+
+#: templates/web/dashboard.html:46
+msgid "No arrivals or departures this week."
+msgstr "این هفته ورود یا خروجی نداریم."
+
+#: templates/web/dashboard.html:49
+msgid "Payments waiting for your review"
+msgstr "پرداخت‌های منتظر بررسی شما"
+
+#: templates/web/dashboard.html:52
+msgid "Confirm"
+msgstr "تأیید"
+
+#: templates/web/dashboard.html:53
+msgid "Nothing to review."
+msgstr "موردی برای بررسی نیست."
+
+#: templates/web/dashboard.html:57
+msgid "Cleaning today"
+msgstr "نظافت امروز"
+
+#: templates/web/detail.html:8
+msgid "Confirm payment"
+msgstr "تأیید پرداخت"
+
+#: templates/web/detail.html:10 templates/web/list.html:22
+msgid "Edit"
+msgstr "ویرایش"
+
+#: templates/web/detail.html:11
+msgid "Archive this record? It stays in the history."
+msgstr "این مورد بایگانی شود؟ در سابقه باقی می‌ماند."
+
+#: templates/web/detail.html:11
+msgid "Archive"
+msgstr "بایگانی"
+
+#: templates/web/detail.html:24
+msgid "No files yet."
+msgstr "هنوز فایلی نیست."
+
+#: templates/web/detail.html:28
+msgid "Upload"
+msgstr "بارگذاری"
+
+#: templates/web/detail.html:32
+msgid "History"
+msgstr "سابقه تغییرات"
+
+#: templates/web/detail.html:34
+msgid "system"
+msgstr "سیستم"
+
+#: templates/web/detail.html:35
+msgid "No changes recorded."
+msgstr "تغییری ثبت نشده است."
+
+#: templates/web/detail.html:41
+msgid "Add"
+msgstr "افزودن"
+
+#: templates/web/detail.html:44
+msgid "None yet."
+msgstr "هنوز موردی نیست."
+
+#: templates/web/form.html:5
+#, python-format
+msgid "Edit %(name)s"
+msgstr "ویرایش %(name)s"
+
+#: templates/web/form.html:5 templates/web/list.html:6
+#, python-format
+msgid "New %(name)s"
+msgstr "%(name)s جدید"
+
+#: templates/web/form.html:6
+msgid "Cancel"
+msgstr "انصراف"
+
+#: templates/web/form.html:20
+msgid "Save"
+msgstr "ذخیره"
+
+#: templates/web/layout.html:4
+msgid "Main menu"
+msgstr "منوی اصلی"
+
+#: templates/web/layout.html:13
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: templates/web/layout.html:14
+msgid "Admin and users"
+msgstr "مدیریت و کاربران"
+
+#: templates/web/layout.html:20
+msgid "Menu"
+msgstr "منو"
+
+#: templates/web/list.html:9
+msgid "Search"
+msgstr "جستجو"
+
+#: templates/web/list.html:24
+msgid "Nothing here yet."
+msgstr "هنوز موردی ثبت نشده است."
+
+#: templates/web/list.html:24
+msgid "Add the first one"
+msgstr "اولین مورد را اضافه کنید"
+
+#: templates/web/list.html:29
+msgid "Showing the first 500. Use search or filters to narrow the list."
+msgstr ""
+"۵۰۰ مورد اول نمایش داده شده است. برای محدود کردن از جستجو یا فیلتر استفاده "
+"کنید."
+
+#: templates/web/no_workspace.html:2
+msgid "No workspace yet"
+msgstr "هنوز حساب شرکتی ندارید"
+
+#: templates/web/no_workspace.html:2
+msgid ""
+"Your login is not linked to a company workspace. Ask your administrator to "
+"add you."
+msgstr "حساب شما به هیچ شرکتی متصل نیست. از مدیر بخواهید شما را اضافه کند."

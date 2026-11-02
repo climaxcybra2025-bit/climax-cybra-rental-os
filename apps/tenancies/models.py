@@ -75,6 +75,14 @@ class Tenancy(WorkspaceScopedModel):
     def __str__(self):
         return f"{self.person} in {self.space} from {self.start_date}"
 
+    def get_constraints(self):
+        """Skip the exclusion constraint during form validation; ``clean()`` runs the same check
+        (and also covers parent and child spaces). The database still enforces it on save."""
+        return [
+            (model, [c for c in constraints if c.name != "tenancy_no_overlap"])
+            for model, constraints in super().get_constraints()
+        ]
+
     def overlapping(self):
         """Live tenancies on this space, its parent or its children that overlap these dates.
 

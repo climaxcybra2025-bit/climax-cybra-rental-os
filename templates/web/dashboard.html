@@ -1,0 +1,60 @@
+{% extends "web/layout.html" %}{% load i18n web_tags %}
+{% block title %}{% translate "Dashboard" %} · Rental OS{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>{% translate "Dashboard" %}</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <a class="btn" href="{% url 'web:create' 'payments' %}">{% translate "Record payment" %}</a>
+    <a class="btn" href="{% url 'web:create' 'tickets' %}">{% translate "New ticket" %}</a>
+    <a class="btn btn-primary" href="{% url 'web:create' 'tenancies' %}">{% translate "New booking" %}</a>
+  </div>
+</div>
+
+<section class="grid grid-4">
+  <div class="card stat"><div class="label">{% translate "Rentable spaces" %}</div><div class="value">{{ total_spaces }}</div></div>
+  <div class="card stat"><div class="label">{% translate "Occupancy" %}</div><div class="value">{{ occupancy }}%</div><div class="small muted">{% blocktranslate %}{{ occupied }} rented{% endblocktranslate %}</div></div>
+  <div class="card stat"><div class="label">{% translate "Open tickets" %}</div><div class="value">{{ open_tickets|length }}</div>{% if urgent_count %}<div class="small"><span class="badge badge-bad">{% blocktranslate %}{{ urgent_count }} urgent{% endblocktranslate %}</span></div>{% endif %}</div>
+  <div class="card stat"><div class="label">{% translate "Payments to review" %}</div><div class="value">{{ pending_count }}</div></div>
+</section>
+
+<section class="card section">
+  <h2>{% translate "Spaces by status" %}</h2>
+  <div class="chips">{% for label, n, code in space_counts %}<a class="chip" href="{% url 'web:list' 'spaces' %}?status={{ code }}"><span class="badge badge-{{ code|tone }}">{{ n }}</span> {{ label }}</a>{% endfor %}</div>
+</section>
+
+<div class="grid grid-2 section">
+  <section class="card">
+    <h2>{% translate "Leases ending in the next 90 days" %}</h2>
+    {% if leases_soon %}<ul class="list-plain">{% for lease, days in leases_soon %}
+      <li><a href="{% url 'web:detail' 'leases' lease.pk %}">{{ lease.property }}</a>
+        <span>{% if days <= 60 %}<span class="badge badge-bad">{% else %}<span class="badge badge-warn">{% endif %}{% blocktranslate count days=days %}{{ days }} day{% plural %}{{ days }} days{% endblocktranslate %}</span>
+        {% if lease.renewal_decision %}<span class="badge badge-info">{{ lease.get_renewal_decision_display }}</span>{% endif %}</span></li>
+    {% endfor %}</ul>{% else %}<p class="empty">{% translate "No leases ending soon." %}</p>{% endif %}
+  </section>
+  <section class="card">
+    <h2>{% translate "Open tickets" %}</h2>
+    {% if open_tickets %}<ul class="list-plain">{% for t in open_tickets %}
+      <li><a href="{% url 'web:detail' 'tickets' t.pk %}">{{ t.title }}</a>
+        <span><span class="badge badge-{{ t.priority|tone }}">{{ t.get_priority_display }}</span> <span class="muted small">{{ t.property }}</span></span></li>
+    {% endfor %}</ul>{% else %}<p class="empty">{% translate "No open tickets." %}</p>{% endif %}
+  </section>
+  <section class="card">
+    <h2>{% translate "Arrivals and departures, next 7 days" %}</h2>
+    {% if arrivals or departures %}<ul class="list-plain">
+      {% for t in arrivals %}<li><a href="{% url 'web:detail' 'tenancies' t.pk %}">{{ t.person }} → {{ t.space }}</a><span class="badge badge-info">{% translate "in" %} {{ t.start_date|date:"M j" }}</span></li>{% endfor %}
+      {% for t in departures %}<li><a href="{% url 'web:detail' 'tenancies' t.pk %}">{{ t.person }} ← {{ t.space }}</a><span class="badge badge-warn">{% translate "out" %} {{ t.end_date|date:"M j" }}</span></li>{% endfor %}
+    </ul>{% else %}<p class="empty">{% translate "No arrivals or departures this week." %}</p>{% endif %}
+  </section>
+  <section class="card">
+    <h2>{% translate "Payments waiting for your review" %}</h2>
+    {% if pending_payments %}<ul class="list-plain">{% for p in pending_payments %}
+      <li><a href="{% url 'web:detail' 'payments' p.pk %}">{{ p.get_purpose_display }} · {% cell p "amount" %} {{ p.currency }}</a>
+        <form method="post" action="{% url 'web:payment-confirm' p.pk %}">{% csrf_token %}<input type="hidden" name="next" value="{% url 'web:dashboard' %}"><button class="btn btn-sm" type="submit">{% translate "Confirm" %}</button></form></li>
+    {% endfor %}</ul>{% else %}<p class="empty">{% translate "Nothing to review." %}</p>{% endif %}
+  </section>
+</div>
+{% if cleaning_today %}
+<section class="card section"><h2>{% translate "Cleaning today" %}</h2><ul class="list-plain">{% for c in cleaning_today %}
+  <li><a href="{% url 'web:detail' 'cleaning' c.pk %}">{{ c.person }} · {{ c.property }}</a><span class="badge badge-{{ c.status|tone }}">{{ c.get_status_display }}</span></li>{% endfor %}</ul></section>
+{% endif %}
+{% endblock %}

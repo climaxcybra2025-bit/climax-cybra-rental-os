@@ -85,3 +85,12 @@ def lease(ws, house):
         monthly_rent=3200,
         currency="CAD",
     )
+
+
+@pytest.fixture(autouse=True)
+def _plain_static_storage(settings):
+    """Tests do not run collectstatic, so skip the hashed-manifest lookup."""
+    settings.STORAGES = {
+        **settings.STORAGES,
+        "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
+    }

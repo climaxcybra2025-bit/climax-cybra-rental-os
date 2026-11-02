@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% load i18n %}
+{% block body %}<div class="auth"><div class="card stack"><h1>{% translate "No workspace yet" %}</h1><p class="muted">{% translate "Your login is not linked to a company workspace. Ask your administrator to add you." %}</p><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="btn" type="submit">{% translate "Sign out" %}</button></form></div></div>{% endblock %}
