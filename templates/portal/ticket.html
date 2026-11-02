@@ -1,0 +1,10 @@
+{% extends "portal/layout.html" %}{% load i18n web_tags %}
+{% block content %}
+<p><a href="{% url 'portal:home' %}">← {% translate "Back" %}</a></p>
+<section class="card stack">
+  <h1>{{ ticket.title }}</h1>
+  <div><span class="badge badge-{{ ticket.priority|tone }}">{{ ticket.get_priority_display }}</span> <span class="badge badge-{{ ticket.status|tone }}">{{ ticket.get_status_display }}</span></div>
+  <p style="white-space:pre-wrap">{{ ticket.description }}</p>
+  <dl class="facts"><dt>{% translate "Opened" %}</dt><dd>{% cell ticket "created_at" %}</dd>{% if ticket.appointment_at %}<dt>{% translate "Visit planned" %}</dt><dd>{% cell ticket "appointment_at" %}</dd>{% endif %}</dl>
+</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}{% load i18n %}
+{% block body %}
+<div class="shell">
+  <aside class="sidebar" aria-label="{% translate 'Main menu' %}">
+    <a class="brand" href="{% url 'web:dashboard' %}">Rental OS<small>{{ request.workspace.name }}</small></a>
+    <nav class="nav">
+      <a href="{% url 'web:dashboard' %}" class="{% if not resource and request.resolver_match.url_name == 'dashboard' %}active{% endif %}">{% translate "Dashboard" %}</a>
+      {% for group_title, items in nav_groups %}
+        <div class="nav-group">{{ group_title }}</div>
+        {% for r in items %}<a href="{% url 'web:list' r.slug %}" class="{% if resource.slug == r.slug %}active{% endif %}">{{ r.title }}</a>{% endfor %}
+      {% endfor %}
+      {% if request.membership.role == "owner" or request.membership.role == "admin" %}
+        <div class="nav-group">{% translate "Settings" %}</div>
+        <a href="{% url 'admin:index' %}">{% translate "Admin and users" %}</a>
+      {% endif %}
+    </nav>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button class="btn btn-sm menu-toggle" type="button" data-toggle-menu>☰ {% translate "Menu" %}</button>
+      <span class="muted small">{{ request.user.get_full_name|default:request.user.username }} · {{ request.membership.get_role_display }}</span>
+      <div style="display:flex;gap:8px;align-items:center">
+        {% include "partials_lang.html" %}
+        <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="btn btn-sm" type="submit">{% translate "Sign out" %}</button></form>
+      </div>
+    </header>
+    <main class="content">
+      {% if messages %}<ul class="messages">{% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}</ul>{% endif %}
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</div>
+{% endblock %}

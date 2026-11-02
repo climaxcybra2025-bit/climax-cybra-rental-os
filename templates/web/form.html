@@ -1,0 +1,22 @@
+{% extends "web/layout.html" %}{% load i18n %}
+{% block title %}{% if obj %}{{ obj }}{% else %}{{ resource.singular }}{% endif %} · Rental OS{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>{% if obj %}{% blocktranslate with name=resource.singular %}Edit {{ name }}{% endblocktranslate %}{% else %}{% blocktranslate with name=resource.singular %}New {{ name }}{% endblocktranslate %}{% endif %}</h1>
+  <a class="btn" href="{% if obj %}{% url 'web:detail' resource.slug obj.pk %}{% else %}{% url 'web:list' resource.slug %}{% endif %}">{% translate "Cancel" %}</a>
+</div>
+<form method="post" enctype="multipart/form-data" class="card" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors %}<ul class="messages"><li class="error">{{ form.non_field_errors|join:" " }}</li></ul>{% endif %}
+  <div class="form-grid">
+    {% for field in form %}{% if not field.is_hidden %}
+    <div class="field {% if field.field.widget.input_type == None or field.name == 'attachments' or field.name == 'description' or field.name == 'notes' or field.name == 'body' %}wide{% endif %}">
+      {% if field.field.widget.input_type == "checkbox" %}<label>{{ field }} {{ field.label }}</label>{% else %}<label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>{{ field }}{% endif %}
+      {% if field.help_text %}<div class="help">{{ field.help_text }}</div>{% endif %}
+      {{ field.errors }}
+    </div>
+    {% else %}{{ field }}{% endif %}{% endfor %}
+  </div>
+  <div style="margin-top:18px;display:flex;gap:8px"><button class="btn btn-primary" type="submit">{% translate "Save" %}</button></div>
+</form>
+{% endblock %}

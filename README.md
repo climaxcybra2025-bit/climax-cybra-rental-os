@@ -18,9 +18,12 @@ Plan and architecture: https://claude.ai/artifact/HuLXhxnb6tgN6NcPwkgdBk
 | Operations | Tickets (urgent tickets email the workspace's urgent recipients), inspections, roommate cleaning duties |
 | Records | Files attached to any record (payment slips, chat screenshots, letters, photos, IDs), correspondence log with landlords, cities and government offices, incidents and warnings |
 | History | Nothing is deleted: delete archives; every create, change and archive is written to an audit log |
+| Staff screens | Dashboard (spaces by status, occupancy, leases ending in 90 days, urgent tickets, payments waiting for confirmation, arrivals, departures, today's cleaning) plus list, search, filter, record page, edit, archive, file upload and change history for every module, at `/app/` |
+| Tenant portal | Tenants see their stay, open urgent or normal tickets with photos, upload payment slips (saved as pending until staff confirm) and see the emergency phone, at `/portal/` |
+| Languages | English and Persian (right-to-left); switch from any screen. Layouts work on phones |
 | API | REST endpoints for every module, a dashboard endpoint, and a tenant-portal ticket endpoint that shows the emergency phone |
 
-Not yet built: staff web screens beyond the Django admin, tenant portal pages, e-signature, channel manager, QuickBooks, n8n workflows, inbound email, subscription billing.
+Not yet built: e-signature, channel manager, QuickBooks, n8n workflows, inbound email, subscription billing.
 
 ## Run locally
 
@@ -33,7 +36,9 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Open http://localhost:8000/admin/ to use the back office. Create a workspace, add your user as owner, then add properties and spaces.
+Create a workspace and a membership with role `owner` for your user in http://localhost:8000/admin/, then sign in at http://localhost:8000/ to use the staff screens. To give a tenant portal access, create a user, a `tenant` membership, and link the user on the tenant's Person record.
+
+After editing translations in `locale/fa/LC_MESSAGES/django.po`, run `python manage.py compilemessages -l fa` (needs gettext).
 
 PostgreSQL is required (the double-booking rule uses a PostgreSQL exclusion constraint; the migration enables the `btree_gist` extension, which needs a superuser or an existing extension).
 
@@ -72,6 +77,10 @@ apps/people/       people and tenant pipeline
 apps/tenancies/    tenancies, payments, deposits, agreements
 apps/operations/   tickets, inspections, cleaning duties, urgent email
 apps/records/      files, correspondence, incidents, audit trail
-apps/api/          REST API, dashboard, tenant portal
+apps/api/          REST API
+apps/web/          staff screens (one generic set of views driven by apps/web/resources.py)
+apps/portal/       tenant portal
+templates/, static/ HTML and CSS (no build step)
+locale/fa/         Persian translations
 tests/             pytest suite
 ```

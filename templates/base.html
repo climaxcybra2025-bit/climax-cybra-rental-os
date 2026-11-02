@@ -1,0 +1,22 @@
+{% load i18n static %}{% get_current_language as LANG %}{% get_current_language_bidi as RTL %}<!doctype html>
+<html lang="{{ LANG }}" dir="{% if RTL %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Rental OS{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body>
+{% block body %}{% endblock %}
+<script>
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-toggle-menu]');
+    if (t) { document.querySelector('.sidebar').classList.toggle('open'); }
+    var c = e.target.closest('[data-confirm]');
+    if (c && !window.confirm(c.getAttribute('data-confirm'))) { e.preventDefault(); }
+  });
+</script>
+</body>
+</html>

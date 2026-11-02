@@ -1,0 +1,30 @@
+{% extends "web/layout.html" %}{% load i18n web_tags %}
+{% block title %}{{ resource.title }} · Rental OS{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>{{ resource.title }}</h1>
+  <a class="btn btn-primary" href="{% url 'web:create' resource.slug %}{% if active_filters %}{% query_with q='' %}{% endif %}">+ {% blocktranslate with name=resource.singular %}New {{ name }}{% endblocktranslate %}</a>
+</div>
+<div class="toolbar">
+  {% if resource.search %}<form method="get" class="search"><input type="search" name="q" value="{{ q }}" placeholder="{% translate 'Search' %}">{% for k, v in active_filters.items %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}</form>{% endif %}
+</div>
+{% for name, label, choices, current in filter_options %}
+<div class="chips" style="margin-bottom:10px"><span class="muted small" style="align-self:center">{{ label|capfirst }}:</span>
+  {% for value, text in choices %}<a class="chip {% if current == value %}on{% endif %}" href="{% toggle_param name value current %}">{{ text }}</a>{% endfor %}
+</div>
+{% endfor %}
+<div class="card table-wrap" style="padding:0">
+  <table>
+    <thead><tr>{% for label, acc in resource.columns %}<th>{{ label }}</th>{% endfor %}<th></th></tr></thead>
+    <tbody>
+    {% for row in rows %}
+      <tr>{% for label, acc in resource.columns %}<td>{% if forloop.first %}<a href="{% url 'web:detail' resource.slug row.pk %}">{% cell row acc %}</a>{% else %}{% cell row acc %}{% endif %}</td>{% endfor %}
+        <td><a class="btn btn-sm" href="{% url 'web:edit' resource.slug row.pk %}">{% translate "Edit" %}</a></td></tr>
+    {% empty %}
+      <tr><td colspan="99" class="empty" style="padding:18px">{% translate "Nothing here yet." %} <a href="{% url 'web:create' resource.slug %}">{% translate "Add the first one" %}</a></td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% if truncated %}<p class="muted small">{% translate "Showing the first 500. Use search or filters to narrow the list." %}</p>{% endif %}
+{% endblock %}

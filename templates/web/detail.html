@@ -1,0 +1,47 @@
+{% extends "web/layout.html" %}{% load i18n web_tags %}
+{% block title %}{{ obj }} · Rental OS{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><div class="muted small"><a href="{% url 'web:list' resource.slug %}">{{ resource.title }}</a></div><h1>{{ obj }}</h1></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    {% if resource.slug == "payments" and obj.status != "confirmed" %}
+      <form method="post" action="{% url 'web:payment-confirm' obj.pk %}">{% csrf_token %}<button class="btn btn-primary" type="submit">{% translate "Confirm payment" %}</button></form>
+    {% endif %}
+    <a class="btn" href="{% url 'web:edit' resource.slug obj.pk %}">{% translate "Edit" %}</a>
+    <form method="post" action="{% url 'web:archive' resource.slug obj.pk %}">{% csrf_token %}<button class="btn btn-danger" type="submit" data-confirm="{% translate 'Archive this record? It stays in the history.' %}">{% translate "Archive" %}</button></form>
+  </div>
+</div>
+<div class="grid grid-2">
+  <section class="card">
+    <h2>{% translate "Details" %}</h2>
+    <dl class="facts">{% for label, name in fields %}<dt>{{ label|capfirst }}</dt><dd>{% detail_value obj name %}</dd>{% endfor %}</dl>
+  </section>
+  <div class="stack">
+    <section class="card">
+      <h2>{% translate "Files" %}</h2>
+      {% if files %}<ul class="list-plain">{% for f in files %}
+        <li><a href="{% url 'web:file' f.pk %}" target="_blank" rel="noopener">{{ f }}</a><span><span class="badge badge-neutral">{{ f.get_kind_display }}</span> <span class="muted small">{{ f.created_at|date:"SHORT_DATE_FORMAT" }}</span></span></li>{% endfor %}</ul>
+      {% else %}<p class="empty">{% translate "No files yet." %}</p>{% endif %}
+      <form method="post" action="{% url 'web:upload' resource.slug obj.pk %}" enctype="multipart/form-data" class="stack" style="margin-top:12px">{% csrf_token %}
+        {{ upload_form.attachments }}
+        <div style="display:flex;gap:8px">{{ upload_form.attachment_kind }}{{ upload_form.title }}</div>
+        <button class="btn" type="submit">{% translate "Upload" %}</button>
+      </form>
+    </section>
+    <section class="card">
+      <h2>{% translate "History" %}</h2>
+      {% if history %}<ul class="list-plain small">{% for h in history %}
+        <li><span>{{ h.get_action_display|default:h.action|capfirst }} · {{ h.user|default:_("system") }}</span><span class="muted">{{ h.at|date:"SHORT_DATETIME_FORMAT" }}</span></li>{% endfor %}</ul>
+      {% else %}<p class="empty">{% translate "No changes recorded." %}</p>{% endif %}
+    </section>
+  </div>
+</div>
+{% for s in sections %}
+<section class="card section table-wrap">
+  <div class="section-head"><h2 style="margin:0">{{ s.title }}</h2><a class="btn btn-sm" href="{% url 'web:create' s.res.slug %}?{{ s.fk }}={{ obj.pk }}&next={{ request.path|urlencode }}">+ {% translate "Add" %}</a></div>
+  {% if s.rows %}<table><thead><tr>{% for label, acc in s.res.columns %}<th>{{ label }}</th>{% endfor %}</tr></thead><tbody>
+    {% for row in s.rows %}<tr>{% for label, acc in s.res.columns %}<td>{% if forloop.first %}<a href="{% url 'web:detail' s.res.slug row.pk %}">{% cell row acc %}</a>{% else %}{% cell row acc %}{% endif %}</td>{% endfor %}</tr>{% endfor %}
+  </tbody></table>{% else %}<p class="empty">{% translate "None yet." %}</p>{% endif %}
+</section>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "portal/layout.html" %}{% load i18n web_tags %}
+{% block title %}{% translate "My home" %}{% endblock %}
+{% block content %}
+<div class="page-head"><h1>{% blocktranslate with name=person.first_name %}Hi {{ name }}{% endblocktranslate %}</h1></div>
+
+{% if emergency_phone %}
+<section class="card alert-urgent stack">
+  <strong>{% translate "Emergency after hours (fire, flood, no heat, security)" %}</strong>
+  <a class="btn btn-primary" href="tel:{{ emergency_phone }}" style="justify-content:center">📞 {{ emergency_phone }}</a>
+  <span class="muted small">{% translate "For a life-threatening emergency call 911 first." %}</span>
+</section>
+{% endif %}
+
+{% if tenancy %}
+<section class="card section">
+  <h2>{% translate "My place" %}</h2>
+  <dl class="facts">
+    <dt>{% translate "Address" %}</dt><dd>{{ property.address_line1 }}{% if property.address_line2 %}, {{ property.address_line2 }}{% endif %}, {{ property.city }}</dd>
+    <dt>{% translate "Room / space" %}</dt><dd>{{ tenancy.space.name }}</dd>
+    <dt>{% translate "Stay" %}</dt><dd>{{ tenancy.start_date|date:"SHORT_DATE_FORMAT" }} → {% if tenancy.end_date %}{{ tenancy.end_date|date:"SHORT_DATE_FORMAT" }}{% else %}{% translate "open-ended" %}{% endif %}</dd>
+    <dt>{% translate "Rent" %}</dt><dd>{% cell tenancy "rent_amount" %} {{ tenancy.currency }} {{ tenancy.get_rent_period_display }}</dd>
+    {% for key, value in house_info.items %}<dt>{{ key|capfirst }}</dt><dd>{{ value }}</dd>{% endfor %}
+  </dl>
+  {% if property.house_rules %}<details style="margin-top:12px"><summary>{% translate "House rules" %}</summary><p style="white-space:pre-wrap">{{ property.house_rules }}</p></details>{% endif %}
+</section>
+{% endif %}
+
+<section class="card section">
+  <h2>{% translate "Report a problem" %}</h2>
+  {% if tenancy %}
+  <form method="post" action="{% url 'portal:ticket-create' %}" enctype="multipart/form-data" class="stack">{% csrf_token %}
+    {% for field in ticket_form %}<div class="field"><label>{{ field.label }}</label>{{ field }}{{ field.errors }}</div>{% endfor %}
+    <p class="muted small">{% translate "Urgent means a risk to safety or property right now, such as a leak, no heat, a broken lock or no power. Urgent tickets email our team immediately." %}</p>
+    <button class="btn btn-primary" type="submit">{% translate "Send ticket" %}</button>
+  </form>
+  {% else %}<p class="empty">{% translate "Tickets open once your stay is active." %}</p>{% endif %}
+</section>
+
+<section class="card section">
+  <h2>{% translate "My tickets" %}</h2>
+  {% if tickets %}<ul class="list-plain">{% for t in tickets %}<li><a href="{% url 'portal:ticket' t.pk %}">{{ t.title }}</a><span><span class="badge badge-{{ t.priority|tone }}">{{ t.get_priority_display }}</span> <span class="badge badge-{{ t.status|tone }}">{{ t.get_status_display }}</span></span></li>{% endfor %}</ul>
+  {% else %}<p class="empty">{% translate "No tickets yet." %}</p>{% endif %}
+</section>
+
+<div class="grid grid-2 section">
+  <section class="card">
+    <h2>{% translate "Send a payment proof" %}</h2>
+    {% if tenancy %}
+    <form method="post" action="{% url 'portal:payment-proof' %}" enctype="multipart/form-data" class="stack">{% csrf_token %}
+      {% for field in payment_form %}<div class="field"><label>{{ field.label }}</label>{{ field }}{{ field.errors }}</div>{% endfor %}
+      <button class="btn" type="submit">{% translate "Send" %}</button>
+    </form>
+    {% else %}<p class="empty">—</p>{% endif %}
+  </section>
+  <section class="card">
+    <h2>{% translate "My payments" %}</h2>
+    {% if payments %}<ul class="list-plain">{% for p in payments %}<li><span>{{ p.paid_on|date:"SHORT_DATE_FORMAT" }} · {{ p.get_purpose_display }}</span><span>{% cell p "amount" %} {{ p.currency }} <span class="badge badge-{{ p.status|tone }}">{{ p.get_status_display }}</span></span></li>{% endfor %}</ul>
+    {% else %}<p class="empty">{% translate "No payments recorded yet." %}</p>{% endif %}
+    {% if cleaning %}<h2 style="margin-top:18px">{% translate "My cleaning turns" %}</h2><ul class="list-plain">{% for c in cleaning %}<li><span>{{ c.due_date|date:"D, M j" }}</span><span class="muted small">{{ c.areas }}</span></li>{% endfor %}</ul>{% endif %}
+  </section>
+</div>
+{% endblock %}

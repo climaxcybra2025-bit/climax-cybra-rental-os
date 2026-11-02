@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% translate "Sign in" %} · Rental OS{% endblock %}
+{% block body %}
+<div class="auth"><form method="post" class="card stack">{% csrf_token %}
+  <div><h1>Rental OS</h1><p class="muted">{% translate "Sign in to your workspace" %}</p></div>
+  {% if form.errors %}<ul class="messages"><li class="error">{% translate "Wrong username or password." %}</li></ul>{% endif %}
+  <div class="field"><label for="id_username">{% translate "Username or email" %}</label>{{ form.username }}</div>
+  <div class="field"><label for="id_password">{% translate "Password" %}</label>{{ form.password }}</div>
+  <input type="hidden" name="next" value="{{ next }}">
+  <button class="btn btn-primary" type="submit" style="justify-content:center">{% translate "Sign in" %}</button>
+  <div style="display:flex;justify-content:space-between;align-items:center"><a class="small" href="{% url 'password_reset' %}">{% translate "Forgot password?" %}</a>{% include "partials_lang.html" %}</div>
+</form></div>
+{% endblock %}

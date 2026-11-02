@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% load i18n %}
+{% block body %}
+<header class="topbar">
+  <strong>{{ request.workspace.name }}</strong>
+  <div style="display:flex;gap:8px;align-items:center">{% include "partials_lang.html" %}
+    <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="btn btn-sm" type="submit">{% translate "Sign out" %}</button></form></div>
+</header>
+<main class="content" style="max-width:860px;margin-inline:auto">
+  {% if messages %}<ul class="messages">{% for m in messages %}<li class="{{ m.tags }}">{{ m }}</li>{% endfor %}</ul>{% endif %}
+  {% block content %}{% endblock %}
+</main>
+{% endblock %}
