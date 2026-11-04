@@ -9,6 +9,7 @@ from dataclasses import dataclass, field
 
 from django.utils.translation import gettext_lazy as _
 
+from apps.integrations.models import Connection, Listing, ListingChannel
 from apps.landlords.models import Landlord, LandlordRepresentative, Lease
 from apps.operations.models import CleaningDuty, Inspection, Ticket
 from apps.people.models import Person
@@ -16,7 +17,7 @@ from apps.properties.models import Property, Space
 from apps.records.models import Correspondence, Incident, RecordFile
 from apps.tenancies.models import Agreement, DepositDeduction, Payment, Tenancy
 
-from .forms import scoped_form
+from .forms import ConnectionForm, scoped_form
 
 
 class _Computed:
@@ -52,11 +53,14 @@ class Resource:
     status_field: str = ""
     nav: bool = True
     icon: str = ""
+    form_class: type = None
+    admin_only: bool = False
 
     def __post_init__(self):
         # Templates would call a bare function with no arguments; wrap computed columns so they are passed through.
         self.columns = [(label, _Computed(acc) if callable(acc) else acc) for label, acc in self.columns]
-        self.form_class = scoped_form(self.model, self.form_fields, attachment_kind=self.attachment_kind)
+        if self.form_class is None:
+            self.form_class = scoped_form(self.model, self.form_fields, attachment_kind=self.attachment_kind)
         if not self.detail_fields:
             self.detail_fields = self.form_fields
 
@@ -151,6 +155,7 @@ RESOURCES = [
             Related(_("Bookings and tenancies"), "tenancies", "space"),
             Related(_("Inspections"), "inspections", "space"),
             Related(_("Tickets"), "tickets", "space"),
+            Related(_("Listings"), "listings", "space"),
         ],
         attachment_kind=RecordFile.Kind.PHOTO,
     ),
@@ -418,14 +423,26 @@ RESOURCES = [
         icon="sparkle",
         columns=[
             (_("Date"), "due_date"),
+            (_("Type"), "kind"),
             (_("Property"), "property"),
+            (_("Space"), "space"),
             (_("Person"), "person"),
-            (_("Areas"), "areas"),
             (_("Status"), "status"),
             (_("Charge"), "charge_amount"),
         ],
-        form_fields=["property", "person", "due_date", "areas", "status", "charge_amount", "notes"],
-        filters=["status"],
+        form_fields=[
+            "kind",
+            "property",
+            "space",
+            "tenancy",
+            "person",
+            "due_date",
+            "areas",
+            "status",
+            "charge_amount",
+            "notes",
+        ],
+        filters=["kind", "status"],
         status_field="status",
         attachment_kind=RecordFile.Kind.PHOTO,
     ),
@@ -497,9 +514,80 @@ RESOURCES = [
     ),
 ]
 
+RESOURCES += [
+    Resource(
+        slug="listings",
+        model=Listing,
+        title=_("Listings"),
+        singular=_("Listing"),
+        icon="megaphone",
+        columns=[
+            (_("Title"), "title"),
+            (_("Space"), "space"),
+            (_("Stay type"), "stay_type"),
+            (_("Monthly"), lambda o: o.price_monthly()),
+            (_("Nightly"), lambda o: o.price_nightly()),
+            (_("Status"), "status"),
+        ],
+        form_fields=[
+            "space",
+            "title",
+            "summary",
+            "description",
+            "amenities",
+            "stay_type",
+            "monthly_price",
+            "nightly_price",
+            "available_from",
+            "contact_line",
+            "status",
+        ],
+        search=["title", "summary", "description"],
+        filters=["status", "stay_type"],
+        related=[Related(_("Channels"), "listing-channels", "listing")],
+        attachment_kind=RecordFile.Kind.PHOTO,
+    ),
+    Resource(
+        slug="listing-channels",
+        model=ListingChannel,
+        title=_("Listing channels"),
+        singular=_("Listing channel"),
+        nav=False,
+        columns=[
+            (_("Channel"), "channel"),
+            (_("Listing"), "listing"),
+            (_("Group / target"), "target"),
+            (_("Status"), "status"),
+            (_("Posted"), "posted_at"),
+        ],
+        form_fields=["listing", "channel", "connection", "target", "external_id", "url", "status"],
+        filters=["channel", "status"],
+        attachment_kind=RecordFile.Kind.CHAT_SCREENSHOT,
+    ),
+    Resource(
+        slug="connections",
+        model=Connection,
+        title=_("Connections"),
+        singular=_("Connection"),
+        icon="plug",
+        columns=[
+            (_("Name"), "name"),
+            (_("Service"), "provider"),
+            (_("On"), "is_enabled"),
+            (_("Last success"), "last_success_at"),
+            (_("Last error"), "last_error"),
+        ],
+        form_fields=["provider", "name", "account_id", "is_enabled"],
+        detail_fields=["provider", "name", "account_id", "is_enabled", "last_success_at", "last_error"],
+        form_class=ConnectionForm,
+        admin_only=True,
+    ),
+]
+
 BY_SLUG = {r.slug: r for r in RESOURCES}
 NAV_GROUPS = [
     (_("Portfolio"), ["properties", "spaces", "landlords", "leases"]),
     (_("Tenants"), ["people", "tenancies", "payments"]),
     (_("Operations"), ["tickets", "cleaning", "correspondence", "incidents"]),
+    (_("Marketing"), ["listings"]),
 ]

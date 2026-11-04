@@ -1,0 +1,20 @@
+{% load i18n %}
+<section class="card section">
+  <h2>{% translate "Publish" %}</h2>
+  {% if obj.last_error %}<ul class="messages"><li class="error">{{ obj.last_error }}</li></ul>{% endif %}
+  {% if obj.channel == "telegram" %}
+    <form method="post" action="{% url 'web:listing-channel-post' obj.pk %}">{% csrf_token %}
+      <button class="btn btn-primary" type="submit">{% if obj.status == "posted" %}{% translate "Post again" %}{% else %}{% translate "Post to Telegram now" %}{% endif %}</button>
+    </form>
+  {% elif obj.channel == "airbnb" or obj.channel == "booking" or obj.channel == "vrbo" %}
+    <p>{% translate "Create and price this listing in Hostaway, then enter the Hostaway listing ID above. Bookings and guest messages for it then arrive here automatically." %}</p>
+  {% else %}
+    <p class="muted small">{% translate "This channel has no posting API. Copy the text, post it by hand, then mark it posted." %}</p>
+    <div class="section-head"><strong>{% translate "Post text" %}</strong><button class="btn btn-sm" type="button" data-copy="#post-text">{% translate "Copy" %}</button></div>
+    <textarea id="post-text" rows="10" readonly>{{ post_text }}</textarea>
+    <form method="post" action="{% url 'web:listing-channel-posted' obj.pk %}" class="toolbar" style="margin-top:10px">{% csrf_token %}
+      <input type="url" name="url" placeholder="{% translate 'Link to the post (optional)' %}" class="search">
+      <button class="btn btn-primary" type="submit">{% translate "Mark as posted" %}</button>
+    </form>
+  {% endif %}
+</section>

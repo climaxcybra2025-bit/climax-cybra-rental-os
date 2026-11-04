@@ -23,6 +23,7 @@ urlpatterns = [
     path("portal/", include("apps.portal.urls")),
     path("admin/", admin.site.urls),
     path("api/", include("apps.api.urls")),
+    path("hooks/", include("apps.integrations.urls")),
     path("health/", health),
 ]
 

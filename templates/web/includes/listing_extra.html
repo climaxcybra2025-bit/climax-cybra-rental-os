@@ -1,0 +1,6 @@
+{% load i18n %}
+<section class="card section">
+  <div class="section-head"><h2 style="margin:0">{% translate "Post text" %}</h2><button class="btn btn-sm" type="button" data-copy="#post-text">{% translate "Copy" %}</button></div>
+  <p class="muted small">{% translate "Paste this into Facebook groups, Marketplace, Kijiji or Craigslist. Add photos from the Files box. The street address is never included." %}</p>
+  <textarea id="post-text" rows="12" readonly>{{ post_text }}</textarea>
+</section>

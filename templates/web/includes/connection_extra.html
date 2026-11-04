@@ -1,0 +1,28 @@
+{% load i18n %}
+<section class="card section">
+  <div class="section-head"><h2 style="margin:0">{% translate "Check and sync" %}</h2>
+    <div style="display:flex;gap:8px">
+      <form method="post" action="{% url 'web:connection-test' obj.pk %}">{% csrf_token %}<button class="btn" type="submit">{% translate "Test connection" %}</button></form>
+      {% if obj.provider == "hostaway" %}<form method="post" action="{% url 'web:connection-sync' obj.pk %}">{% csrf_token %}<button class="btn btn-primary" type="submit">{% translate "Sync bookings now" %}</button></form>{% endif %}
+    </div>
+  </div>
+  <p>{% if obj.has_secret %}<span class="badge badge-good">{% translate "Secret saved" %}</span>{% else %}<span class="badge badge-warn">{% translate "No secret saved yet" %}</span>{% endif %}</p>
+  {% if webhook_url %}
+    <p>{% translate "In Hostaway, go to Settings, Integrations, Webhooks and add this unified webhook URL. Keep it private: anyone with it can ask Rental OS to re-check a booking." %}</p>
+    <div class="toolbar"><input id="hook-url" readonly value="{{ webhook_url }}"><button class="btn btn-sm" type="button" data-copy="#hook-url">{% translate "Copy" %}</button></div>
+  {% endif %}
+  {% if obj.provider == "telegram" %}<p class="muted small">{% translate "Create a bot with @BotFather, paste its token as the secret, add the bot as an admin of your channel, and put the channel name (for example @oceanway_rooms) in Account ID." %}</p>{% endif %}
+  {% if obj.provider == "n8n" %}
+    <p class="muted small">{% translate "Put your n8n Webhook node URL in Account ID. If you save a signing secret, every request carries an X-RentalOS-Signature header (sha256 HMAC of the body) for n8n to check." %}</p>
+    <p>{% blocktranslate count n=pending_events %}{{ n }} event waiting to be sent.{% plural %}{{ n }} events waiting to be sent.{% endblocktranslate %}</p>
+    <table><thead><tr><th>{% translate "Event" %}</th><th>{% translate "When" %}</th></tr></thead><tbody>
+      {% for name, desc in event_names.items %}<tr><td><code>{{ name }}</code></td><td>{{ desc }}</td></tr>{% endfor %}
+    </tbody></table>
+  {% endif %}
+</section>
+<section class="card section table-wrap">
+  <h2>{% translate "Recent activity" %}</h2>
+  {% if logs %}<table><thead><tr><th>{% translate "When" %}</th><th>{% translate "What" %}</th><th>{% translate "Result" %}</th><th>{% translate "Details" %}</th></tr></thead><tbody>
+    {% for l in logs %}<tr><td>{{ l.created_at|date:"SHORT_DATETIME_FORMAT" }}</td><td>{{ l.get_direction_display }} · {{ l.kind }}</td><td><span class="badge badge-{% if l.status == 'ok' %}good{% elif l.status == 'error' %}bad{% else %}neutral{% endif %}">{{ l.get_status_display }}</span></td><td class="small">{{ l.message }}</td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="empty">{% translate "Nothing yet." %}</p>{% endif %}
+</section>

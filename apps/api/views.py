@@ -7,6 +7,7 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from apps.integrations.models import Listing, ListingChannel
 from apps.landlords.models import Landlord, LandlordRepresentative, Lease
 from apps.operations.models import CleaningDuty, Ticket
 from apps.people.models import Person
@@ -51,6 +52,8 @@ TicketViewSet = viewset(Ticket, s.TicketSerializer)
 CleaningDutyViewSet = viewset(CleaningDuty, s.CleaningDutySerializer)
 CorrespondenceViewSet = viewset(Correspondence, s.CorrespondenceSerializer)
 RecordFileViewSet = viewset(RecordFile, s.RecordFileSerializer)
+ListingViewSet = viewset(Listing, s.ListingSerializer)
+ListingChannelViewSet = viewset(ListingChannel, s.ListingChannelSerializer)
 
 
 @api_view(["GET"])

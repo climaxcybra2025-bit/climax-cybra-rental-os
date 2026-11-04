@@ -26,8 +26,9 @@ class AuditUserMiddleware:
 
 def _snapshot(instance):
     data = {}
+    skip = {"created_at", "updated_at", *getattr(instance, "AUDIT_EXCLUDE", ())}
     for field in instance._meta.concrete_fields:
-        if field.name in {"created_at", "updated_at"}:
+        if field.name in skip:
             continue
         value = getattr(instance, field.attname)
         data[field.attname] = value if isinstance(value, (int, float, bool, type(None))) else str(value)
