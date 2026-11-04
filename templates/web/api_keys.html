@@ -1,0 +1,25 @@
+{% extends "web/layout.html" %}{% load i18n %}
+{% block title %}{% translate "API keys" %} · Rental OS{% endblock %}
+{% block content %}
+<div class="page-head"><h1>{% translate "API keys" %}</h1></div>
+{% if new_key %}
+<section class="card section alert-urgent">
+  <h2>{% translate "Copy this key now" %}</h2>
+  <p>{% translate "It is shown only once. In n8n, add an HTTP Request credential with the header Authorization: Api-Key followed by this key." %}</p>
+  <div class="toolbar"><input id="new-key" readonly value="{{ new_key }}"><button class="btn btn-sm" type="button" data-copy="#new-key">{% translate "Copy" %}</button></div>
+</section>
+{% endif %}
+<section class="card section">
+  <form method="post" class="toolbar">{% csrf_token %}
+    <input name="name" class="search" placeholder="{% translate 'Name, e.g. n8n' %}" maxlength="120">
+    <button class="btn btn-primary" type="submit">{% translate "Create key" %}</button>
+  </form>
+  <p class="muted small">{% translate "A key can read and change this workspace's records through /api/, acting as you." %}</p>
+</section>
+<section class="card section table-wrap">
+  {% if keys %}<table><thead><tr><th>{% translate "Name" %}</th><th>{% translate "Starts with" %}</th><th>{% translate "Created" %}</th><th>{% translate "Last used" %}</th><th></th></tr></thead><tbody>
+  {% for k in keys %}<tr><td>{{ k.name }}</td><td><code>{{ k.prefix }}…</code></td><td>{{ k.created_at|date:"SHORT_DATE_FORMAT" }}</td><td>{{ k.last_used_at|date:"SHORT_DATETIME_FORMAT"|default:"—" }}</td>
+    <td>{% if k.revoked_at %}<span class="badge badge-neutral">{% translate "Revoked" %}</span>{% else %}<form method="post">{% csrf_token %}<button class="btn btn-sm btn-danger" name="revoke" value="{{ k.pk }}" data-confirm="{% translate 'Revoke this key? Anything using it stops working.' %}">{% translate "Revoke" %}</button></form>{% endif %}</td></tr>{% endfor %}
+  </tbody></table>{% else %}<p class="empty">{% translate "No keys yet." %}</p>{% endif %}
+</section>
+{% endblock %}

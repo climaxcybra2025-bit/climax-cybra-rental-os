@@ -21,9 +21,14 @@ Plan and architecture: https://claude.ai/artifact/HuLXhxnb6tgN6NcPwkgdBk
 | Staff screens | Dashboard (spaces by status, occupancy, leases ending in 90 days, urgent tickets, payments waiting for confirmation, arrivals, departures, today's cleaning) plus list, search, filter, record page, edit, archive, file upload and change history for every module, at `/app/` |
 | Tenant portal | Tenants see their stay, open urgent or normal tickets with photos, upload payment slips (saved as pending until staff confirm) and see the emergency phone, at `/portal/` |
 | Languages | English and Persian (right-to-left); switch from any screen. Layouts work on phones |
+| Listings | One advert per room, bed, couch or unit, with photos, prices and a ready-to-paste post (never shows the street address); per-channel status for Airbnb, Booking.com, Vrbo, Telegram, Facebook groups and Marketplace, Kijiji, Craigslist, Zumper |
+| Channel manager | Hostaway connection: bookings from Airbnb, Booking.com and Vrbo become tenancies and guests automatically (webhook plus a sync every 15 minutes); a booking that overlaps another one opens an urgent ticket; guest messages land in Correspondence and staff reply from Rental OS |
+| Telegram | Post a listing with photos to your own channel in one click |
+| n8n | Signed event webhooks (tickets, payments, bookings, checkouts, lease expiry, messages) and workspace API keys for n8n to read and write records |
+| Daily jobs | Short stays start on check-in day; each checkout schedules a turnover clean and flags the space; lease-expiry alerts at 90, 60, 30 and 7 days |
 | API | REST endpoints for every module, a dashboard endpoint, and a tenant-portal ticket endpoint that shows the emergency phone |
 
-Not yet built: e-signature, channel manager, QuickBooks, n8n workflows, inbound email, subscription billing.
+Not yet built: QuickBooks, e-signature, inbound email, subscription billing.
 
 ## Run locally
 
@@ -51,6 +56,19 @@ docker compose exec web python manage.py createsuperuser
 ```
 
 Put a reverse proxy with HTTPS (Caddy, Nginx or Traefik) in front of port 8000.
+
+## Connecting channels
+
+All connections live under **Settings → Connections** (owner and admin only). Secrets are encrypted with `FIELD_ENCRYPTION_KEY` and never shown again.
+
+- **Hostaway (Airbnb, Booking.com, Vrbo).** In Hostaway, Settings → Hostaway API, create an API key. Add a Hostaway connection with the account ID and the key, press *Test connection*, then copy the webhook URL shown on the connection into Hostaway's unified webhooks. For each listing, add an Airbnb/Booking.com channel with the Hostaway listing ID. Prices, availability and the channel listings themselves are managed in Hostaway.
+- **Telegram.** Create a bot with @BotFather, make it an admin of your channel, and add a Telegram connection with the bot token and the channel name (for example `@oceanway_rooms`).
+- **n8n.** Add an n8n connection with your Webhook node URL and a signing secret; check `X-RentalOS-Signature` (`sha256=` HMAC of the raw body) in n8n. Create an API key under **Settings → API keys** for n8n to call `/api/` with the header `Authorization: Api-Key <key>`.
+- **Facebook groups, Marketplace, Kijiji, Craigslist.** These have no posting API for this use. Each listing has a post text with a Copy button; post by hand and press *Mark as posted*.
+
+## Background jobs
+
+`python manage.py run_scheduler` runs everything in one process (Docker Compose starts it as the `scheduler` service): n8n delivery every minute, Hostaway sync every `SCHEDULER_SYNC_MINUTES`, and daily jobs once per workspace after `DAILY_JOBS_HOUR` local time. The single jobs are also available: `deliver_events`, `sync_channels`, `run_daily_jobs [--date YYYY-MM-DD]`.
 
 ## Tests and checks
 
@@ -80,6 +98,7 @@ apps/records/      files, correspondence, incidents, audit trail
 apps/api/          REST API
 apps/web/          staff screens (one generic set of views driven by apps/web/resources.py)
 apps/portal/       tenant portal
+apps/integrations/ listings, channels, Hostaway, Telegram, n8n events, API keys, scheduler
 templates/, static/ HTML and CSS (no build step)
 locale/fa/         Persian translations
 tests/             pytest suite

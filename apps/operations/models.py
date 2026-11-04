@@ -89,8 +89,36 @@ class CleaningDuty(WorkspaceScopedModel):
         WORKER_ASSIGNED = "worker_assigned", _("Worker assigned")
         MISSED = "missed", _("Missed")
 
+    class Kind(models.TextChoices):
+        ROSTER = "roster", _("Roommate roster")
+        TURNOVER = "turnover", _("Turnover after checkout")
+
+    kind = models.CharField(max_length=10, choices=Kind.choices, default=Kind.ROSTER)
     property = models.ForeignKey(Property, on_delete=models.PROTECT, related_name="cleaning_duties")
-    person = models.ForeignKey(Person, on_delete=models.PROTECT, related_name="cleaning_duties")
+    space = models.ForeignKey(
+        Space,
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        related_name="cleaning_duties",
+        help_text=_("For turnover cleans: the room, bed or unit to get ready"),
+    )
+    tenancy = models.ForeignKey(
+        Tenancy,
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        related_name="turnover_cleans",
+        help_text=_("The stay that checked out"),
+    )
+    person = models.ForeignKey(
+        Person,
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        related_name="cleaning_duties",
+        help_text=_("Roommate on the roster, or the cleaner assigned"),
+    )
     due_date = models.DateField()
     areas = models.CharField(max_length=200, default="Kitchen, bathroom, shared areas, garbage")
     status = models.CharField(max_length=16, choices=Status.choices, default=Status.SCHEDULED)
@@ -103,4 +131,6 @@ class CleaningDuty(WorkspaceScopedModel):
         verbose_name_plural = "cleaning duties"
 
     def __str__(self):
-        return f"{self.person} cleans {self.property} on {self.due_date}"
+        who = self.person or "Unassigned"
+        where = self.space.name if self.space_id else self.property
+        return f"{who} cleans {where} on {self.due_date}"

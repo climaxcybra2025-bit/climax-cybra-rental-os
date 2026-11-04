@@ -21,7 +21,10 @@ from apps.records.models import AuditEntry, RecordFile
 from apps.tenancies.models import Payment, Tenancy
 
 from .forms import FileUploadForm
+from .integration_views import detail_extras
 from .resources import BY_SLUG, NAV_GROUPS
+
+ADMIN_ROLES = ("owner", "admin")
 
 
 def home(request):
@@ -117,6 +120,13 @@ class ResourceMixin(StaffRequiredMixin):
         self.resource = BY_SLUG.get(kwargs["resource"])
         if self.resource is None:
             raise Http404
+
+    def dispatch(self, request, *args, **kwargs):
+        membership = getattr(request, "membership", None)
+        if self.resource.admin_only and membership is not None and membership.role not in ADMIN_ROLES:
+            messages.error(request, _("Only the owner or an admin can manage connections."))
+            return redirect("web:dashboard")
+        return super().dispatch(request, *args, **kwargs)
 
     def queryset(self):
         return self.resource.model.objects.active().filter(workspace=self.request.workspace)
@@ -237,6 +247,7 @@ class ResourceDetailView(ResourceMixin, View):
                 files=files,
                 history=history,
                 upload_form=FileUploadForm(initial={"attachment_kind": res.attachment_kind}),
+                **detail_extras(request, res.slug, obj),
             ),
         )
 

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from apps.integrations.models import Listing, ListingChannel
 from apps.landlords.models import Landlord, LandlordRepresentative, Lease
 from apps.operations.models import CleaningDuty, Ticket
 from apps.people.models import Person
@@ -53,6 +54,8 @@ TicketSerializer = scoped(Ticket)
 CleaningDutySerializer = scoped(CleaningDuty)
 CorrespondenceSerializer = scoped(Correspondence)
 RecordFileSerializer = scoped(RecordFile)
+ListingSerializer = scoped(Listing)
+ListingChannelSerializer = scoped(ListingChannel)
 
 
 class TenantTicketSerializer(serializers.ModelSerializer):

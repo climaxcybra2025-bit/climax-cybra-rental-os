@@ -28,6 +28,20 @@ services:
       db:
         condition: service_healthy
 
+  scheduler:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    command: ["python", "manage.py", "run_scheduler"]
+    environment:
+      DATABASE_URL: postgres://rental:${POSTGRES_PASSWORD:-rental}@db:5432/rental_os
+      MEDIA_ROOT: /app/media
+    volumes:
+      - media:/app/media
+    depends_on:
+      web:
+        condition: service_started
+
 volumes:
   pgdata:
   media:

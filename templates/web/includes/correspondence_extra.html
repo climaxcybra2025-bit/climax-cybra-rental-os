@@ -1,0 +1,9 @@
+{% load i18n %}
+<section class="card section">
+  <h2>{% translate "Reply to the guest" %}</h2>
+  <p class="muted small">{% translate "Sent through the booking channel (Airbnb, Booking.com, Vrbo) and saved here." %}</p>
+  <form method="post" action="{% url 'web:correspondence-reply' obj.pk %}" class="stack">{% csrf_token %}
+    <textarea name="body" rows="5" required></textarea>
+    <button class="btn btn-primary" type="submit">{% translate "Send reply" %}</button>
+  </form>
+</section>

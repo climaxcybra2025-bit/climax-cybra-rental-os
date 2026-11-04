@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "apps.records",
     "apps.web",
     "apps.portal",
+    "apps.integrations",
 ]
 
 MIDDLEWARE = [
@@ -121,9 +122,14 @@ if env("EMAIL_HOST", default=""):
     EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
     EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
 
+FIELD_ENCRYPTION_KEY = env("FIELD_ENCRYPTION_KEY", default="")
+SCHEDULER_SYNC_MINUTES = env.int("SCHEDULER_SYNC_MINUTES", default=15)
+DAILY_JOBS_HOUR = env.int("DAILY_JOBS_HOUR", default=6)  # local time of each workspace
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
+        "apps.integrations.auth.ApiKeyAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",

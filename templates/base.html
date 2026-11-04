@@ -16,6 +16,12 @@
     if (t) { document.querySelector('.sidebar').classList.toggle('open'); }
     var c = e.target.closest('[data-confirm]');
     if (c && !window.confirm(c.getAttribute('data-confirm'))) { e.preventDefault(); }
+    var cp = e.target.closest('[data-copy]');
+    if (cp) {
+      var src = document.querySelector(cp.getAttribute('data-copy'));
+      if (src && navigator.clipboard) { navigator.clipboard.writeText(src.value).then(function () { cp.textContent = '✓'; }); }
+      else if (src) { src.select(); document.execCommand('copy'); }
+    }
   });
 </script>
 </body>

@@ -36,6 +36,7 @@
     </section>
   </div>
 </div>
+{% if extra_template %}{% include extra_template %}{% endif %}
 {% for s in sections %}
 <section class="card section table-wrap">
   <div class="section-head"><h2 style="margin:0">{{ s.title }}</h2><a class="btn btn-sm" href="{% url 'web:create' s.res.slug %}?{{ s.fk }}={{ obj.pk }}&next={{ request.path|urlencode }}">+ {% translate "Add" %}</a></div>

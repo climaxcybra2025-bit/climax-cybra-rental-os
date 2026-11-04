@@ -9,6 +9,7 @@ from django import forms
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import gettext_lazy as _
 
+from apps.integrations.models import Connection
 from apps.records.models import RecordFile
 
 
@@ -102,3 +103,27 @@ class FileUploadForm(forms.Form):
     attachments = MultipleFileField(label=_("Files"), required=True)
     attachment_kind = forms.ChoiceField(label=_("File type"), choices=RecordFile.Kind.choices)
     title = forms.CharField(label=_("Description"), required=False, max_length=200)
+
+
+class ConnectionForm(ScopedModelForm):
+    """Connection settings. The secret is write-only: it is never shown again, and blank keeps the saved one."""
+
+    allow_attachments = False
+    secret = forms.CharField(
+        label=_("API key / bot token / signing secret"),
+        required=False,
+        widget=forms.PasswordInput(render_value=False, attrs={"autocomplete": "new-password"}),
+        help_text=_("Stored encrypted. Leave blank to keep the saved value."),
+    )
+
+    class Meta:
+        model = Connection
+        fields = ["provider", "name", "account_id", "is_enabled"]
+
+    def save(self, commit=True):
+        obj = super().save(commit=False)
+        if self.cleaned_data.get("secret"):
+            obj.set_secret(self.cleaned_data["secret"].strip())
+        if commit:
+            obj.save()
+        return obj

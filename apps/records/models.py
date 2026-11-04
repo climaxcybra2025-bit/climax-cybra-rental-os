@@ -97,6 +97,9 @@ class Correspondence(WorkspaceScopedModel):
     deadline = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=12, choices=Status.choices, default=Status.NONE)
     external_message_id = models.CharField(max_length=255, blank=True, help_text=_("Email Message-ID, for dedupe"))
+    external_thread_id = models.CharField(
+        max_length=120, blank=True, help_text=_("Channel conversation ID, used to reply from Rental OS")
+    )
 
     class Meta:
         ordering = ["-occurred_at"]
