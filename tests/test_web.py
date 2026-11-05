@@ -6,7 +6,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client
 from django.urls import reverse
 
-from apps.integrations.models import Connection, Listing, ListingChannel
+from apps.integrations.models import Connection, Inbox, Listing, ListingChannel
 from apps.landlords.models import LandlordRepresentative
 from apps.operations.models import CleaningDuty, Inspection, Ticket
 from apps.records.models import Correspondence, Incident, RecordFile
@@ -95,6 +95,7 @@ def full_data(ws, house, lease, tenant_person):
         workspace=ws, listing=listing, channel="facebook_group", target="Vancouver Rooms"
     )
     objs["connections"] = conn
+    objs["inboxes"] = Inbox.objects.create(workspace=ws, address="regan-st", property=house["property"])
     return objs
 
 

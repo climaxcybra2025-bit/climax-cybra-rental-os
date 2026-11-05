@@ -25,10 +25,12 @@ Plan and architecture: https://claude.ai/artifact/HuLXhxnb6tgN6NcPwkgdBk
 | Channel manager | Hostaway connection: bookings from Airbnb, Booking.com and Vrbo become tenancies and guests automatically (webhook plus a sync every 15 minutes); a booking that overlaps another one opens an urgent ticket; guest messages land in Correspondence and staff reply from Rental OS |
 | Telegram | Post a listing with photos to your own channel in one click |
 | n8n | Signed event webhooks (tickets, payments, bookings, checkouts, lease expiry, messages) and workspace API keys for n8n to read and write records |
+| QuickBooks Online | Connect with Intuit sign-in; confirmed money in becomes a Sales Receipt (tenant as customer, product/service per purpose), money out to landlords becomes an Expense (landlord as vendor); each payment is sent once, from a start date you choose |
+| Email inbox | One address per property (e.g. `regan-st@in.yourdomain`); CC or forward landlord, strata and city emails to it and they are filed as Correspondence with attachments, matched to the landlord, tenant or government sender (forwarded emails use the original sender) |
 | Daily jobs | Short stays start on check-in day; each checkout schedules a turnover clean and flags the space; lease-expiry alerts at 90, 60, 30 and 7 days |
 | API | REST endpoints for every module, a dashboard endpoint, and a tenant-portal ticket endpoint that shows the emergency phone |
 
-Not yet built: QuickBooks, e-signature, inbound email, subscription billing.
+Not yet built: e-signature, subscription billing, AI reply drafts.
 
 ## Run locally
 
@@ -66,9 +68,12 @@ All connections live under **Settings → Connections** (owner and admin only). 
 - **n8n.** Add an n8n connection with your Webhook node URL and a signing secret; check `X-RentalOS-Signature` (`sha256=` HMAC of the raw body) in n8n. Create an API key under **Settings → API keys** for n8n to call `/api/` with the header `Authorization: Api-Key <key>`.
 - **Facebook groups, Marketplace, Kijiji, Craigslist.** These have no posting API for this use. Each listing has a post text with a Copy button; post by hand and press *Mark as posted*.
 
+- **QuickBooks Online.** Platform setup, once: create an app at developer.intuit.com, add the redirect URI `https://<your domain>/app/quickbooks/callback/`, and set `QBO_CLIENT_ID`, `QBO_CLIENT_SECRET`, `QBO_REDIRECT_URI` and `QBO_ENVIRONMENT` (`sandbox` while testing, `production` after Intuit approves the app). Per workspace: add a QuickBooks connection, press *Connect to QuickBooks*, then choose the product/service for each kind of money received, the account for each kind of money paid, the bank accounts, and a start date. Nothing is sent before the start date is set.
+- **Email inboxes.** Point an inbound domain (for example `in.yourdomain.com`) at Mailgun or Postmark and set `INBOUND_EMAIL_DOMAIN`. Mailgun: create a catch-all route that forwards to `https://<your domain>/hooks/email/mailgun/` and set `MAILGUN_WEBHOOK_SIGNING_KEY`. Postmark: set the inbound webhook to `https://<your domain>/hooks/email/postmark/<POSTMARK_INBOUND_TOKEN>/`. Then add inboxes under **Settings → Email inboxes**.
+
 ## Background jobs
 
-`python manage.py run_scheduler` runs everything in one process (Docker Compose starts it as the `scheduler` service): n8n delivery every minute, Hostaway sync every `SCHEDULER_SYNC_MINUTES`, and daily jobs once per workspace after `DAILY_JOBS_HOUR` local time. The single jobs are also available: `deliver_events`, `sync_channels`, `run_daily_jobs [--date YYYY-MM-DD]`.
+`python manage.py run_scheduler` runs everything in one process (Docker Compose starts it as the `scheduler` service): n8n delivery every minute, Hostaway sync and QuickBooks push every `SCHEDULER_SYNC_MINUTES`, and daily jobs once per workspace after `DAILY_JOBS_HOUR` local time. The single jobs are also available: `deliver_events`, `sync_channels`, `push_accounting`, `run_daily_jobs [--date YYYY-MM-DD]`.
 
 ## Tests and checks
 
@@ -98,7 +103,7 @@ apps/records/      files, correspondence, incidents, audit trail
 apps/api/          REST API
 apps/web/          staff screens (one generic set of views driven by apps/web/resources.py)
 apps/portal/       tenant portal
-apps/integrations/ listings, channels, Hostaway, Telegram, n8n events, API keys, scheduler
+apps/integrations/ listings, channels, Hostaway, Telegram, QuickBooks, email inboxes, n8n events, API keys, scheduler
 templates/, static/ HTML and CSS (no build step)
 locale/fa/         Persian translations
 tests/             pytest suite

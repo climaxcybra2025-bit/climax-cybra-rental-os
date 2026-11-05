@@ -1,0 +1,30 @@
+{% extends "web/layout.html" %}{% load i18n %}
+{% block title %}{% translate "QuickBooks accounts" %} · Rental OS{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><div class="muted small"><a href="{% url 'web:detail' 'connections' obj.pk %}">{{ obj }}</a></div><h1>{% translate "Where payments go in QuickBooks" %}</h1></div>
+</div>
+<form method="post" class="stack">{% csrf_token %}
+  <section class="card">
+    <h2>{% translate "Start date" %}</h2>
+    <p class="muted small">{% translate "Only payments confirmed and dated on or after this day are sent. Earlier ones are left alone, so nothing already in QuickBooks is entered twice." %}</p>
+    <input type="date" name="start_date" value="{{ mapping.start_date }}" class="search">
+  </section>
+  <section class="card table-wrap">
+    <h2>{% translate "Money received (sales receipts)" %}</h2>
+    <p class="muted small">{% translate "Pick the product or service for each kind of payment. Deposits usually go to a product linked to a liability account." %}</p>
+    <table><tbody>
+      {% for key, label, current in in_rows %}<tr><td>{{ label }}</td><td><select name="item_{{ key }}"><option value="">{% translate "— do not send —" %}</option>{% for i in items %}<option value="{{ i.Id }}" {% if i.Id == current %}selected{% endif %}>{{ i.Name }}</option>{% endfor %}</select></td></tr>{% endfor %}
+      <tr><td>{% translate "Deposit to" %}</td><td><select name="deposit_account"><option value="">{% translate "Undeposited funds (QuickBooks default)" %}</option>{% for a in banks %}<option value="{{ a.Id }}" {% if a.Id == mapping.deposit_account %}selected{% endif %}>{{ a.Name }}</option>{% endfor %}</select></td></tr>
+    </tbody></table>
+  </section>
+  <section class="card table-wrap">
+    <h2>{% translate "Money paid (expenses)" %}</h2>
+    <table><tbody>
+      {% for key, label, current in out_rows %}<tr><td>{{ label }}</td><td><select name="account_{{ key }}"><option value="">{% translate "— do not send —" %}</option>{% for a in accounts %}<option value="{{ a.Id }}" {% if a.Id == current %}selected{% endif %}>{{ a.Name }} ({{ a.AccountType }})</option>{% endfor %}</select></td></tr>{% endfor %}
+      <tr><td>{% translate "Paid from" %}</td><td><select name="payment_account"><option value="">—</option>{% for a in banks %}<option value="{{ a.Id }}" {% if a.Id == mapping.payment_account %}selected{% endif %}>{{ a.Name }}</option>{% endfor %}</select></td></tr>
+    </tbody></table>
+  </section>
+  <div><button class="btn btn-primary" type="submit">{% translate "Save" %}</button></div>
+</form>
+{% endblock %}

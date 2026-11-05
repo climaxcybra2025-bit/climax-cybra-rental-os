@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 
 from django.utils.translation import gettext_lazy as _
 
-from apps.integrations.models import Connection, Listing, ListingChannel
+from apps.integrations.models import Connection, Inbox, Listing, ListingChannel
 from apps.landlords.models import Landlord, LandlordRepresentative, Lease
 from apps.operations.models import CleaningDuty, Inspection, Ticket
 from apps.people.models import Person
@@ -580,6 +580,21 @@ RESOURCES += [
         form_fields=["provider", "name", "account_id", "is_enabled"],
         detail_fields=["provider", "name", "account_id", "is_enabled", "last_success_at", "last_error"],
         form_class=ConnectionForm,
+        admin_only=True,
+    ),
+    Resource(
+        slug="inboxes",
+        model=Inbox,
+        title=_("Email inboxes"),
+        singular=_("Email inbox"),
+        nav=False,
+        columns=[
+            (_("Address"), lambda o: o.email_address or o.address),
+            (_("Property"), "property"),
+            (_("Unknown senders are"), "default_counterpart"),
+            (_("On"), "is_enabled"),
+        ],
+        form_fields=["address", "property", "default_counterpart", "is_enabled"],
         admin_only=True,
     ),
 ]
