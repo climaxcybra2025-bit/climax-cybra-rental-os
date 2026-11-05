@@ -12,6 +12,7 @@
       {% if request.membership.role == "owner" or request.membership.role == "admin" %}
         <div class="nav-group">{% translate "Settings" %}</div>
         <a href="{% url 'web:list' 'connections' %}" class="{% if resource.slug == 'connections' %}active{% endif %}">{% translate "Connections" %}</a>
+        <a href="{% url 'web:list' 'inboxes' %}" class="{% if resource.slug == 'inboxes' %}active{% endif %}">{% translate "Email inboxes" %}</a>
         <a href="{% url 'web:api-keys' %}" class="{% if request.resolver_match.url_name == 'api-keys' %}active{% endif %}">{% translate "API keys" %}</a>
         <a href="{% url 'admin:index' %}">{% translate "Admin and users" %}</a>
       {% endif %}

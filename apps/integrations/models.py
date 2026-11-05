@@ -1,15 +1,18 @@
 """Listings, sales channels, connections to outside services, the event outbox and API keys."""
 
+import builtins
 import hashlib
 import json
 import secrets
 
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from apps.properties.models import Space
+from apps.records.models import Correspondence
 from apps.workspaces.models import Workspace, WorkspaceScopedModel
 
 from . import crypto
@@ -22,6 +25,7 @@ class Connection(WorkspaceScopedModel):
         HOSTAWAY = "hostaway", _("Hostaway (Airbnb, Booking.com, Vrbo)")
         TELEGRAM = "telegram", _("Telegram bot")
         N8N = "n8n", _("n8n workflows")
+        QUICKBOOKS = "quickbooks", _("QuickBooks Online")
 
     AUDIT_EXCLUDE = ("secret_encrypted", "settings", "webhook_token")
 
@@ -295,3 +299,81 @@ class JobRun(models.Model):
 
     def __str__(self):
         return f"{self.job} {self.run_on}"
+
+
+class ExternalRef(models.Model):
+    """Links a Rental OS record to its copy in an outside system (e.g. a QuickBooks sales receipt)."""
+
+    workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE, related_name="+")
+    connection = models.ForeignKey(Connection, on_delete=models.CASCADE, related_name="external_refs")
+    content_type = models.ForeignKey("contenttypes.ContentType", on_delete=models.CASCADE)
+    object_id = models.PositiveBigIntegerField()
+    record = GenericForeignKey("content_type", "object_id")
+    external_type = models.CharField(max_length=40)
+    external_id = models.CharField(max_length=120)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["connection", "content_type", "object_id"], name="externalref_once")
+        ]
+
+    def __str__(self):
+        return f"{self.external_type} {self.external_id}"
+
+    @classmethod
+    def for_object(cls, connection, obj):
+        from django.contrib.contenttypes.models import ContentType
+
+        return cls.objects.filter(
+            connection=connection, content_type=ContentType.objects.get_for_model(obj), object_id=obj.pk
+        ).first()
+
+    @classmethod
+    def link(cls, connection, obj, external_type, external_id):
+        from django.contrib.contenttypes.models import ContentType
+
+        return cls.objects.create(
+            workspace_id=connection.workspace_id,
+            connection=connection,
+            content_type=ContentType.objects.get_for_model(obj),
+            object_id=obj.pk,
+            external_type=external_type,
+            external_id=str(external_id),
+        )
+
+
+class Inbox(WorkspaceScopedModel):
+    """An email address that files every message it receives as Correspondence.
+
+    Give each property its own inbox (for example regan-st@in.example.com), put it
+    in CC or forward landlord, strata and city emails to it, and they are kept
+    with their attachments.
+    """
+
+    address = models.SlugField(
+        max_length=64, unique=True, help_text=_("The part before the @, for example oceanway-regan-st")
+    )
+    property = models.ForeignKey(
+        "properties.Property", null=True, blank=True, on_delete=models.PROTECT, related_name="inboxes"
+    )
+    default_counterpart = models.CharField(
+        max_length=12,
+        choices=Correspondence.Counterpart.choices,
+        default=Correspondence.Counterpart.OTHER,
+        help_text=_("Used when the sender is not a known landlord, tenant or government office"),
+    )
+    is_enabled = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["address"]
+        verbose_name_plural = "inboxes"
+
+    def __str__(self):
+        return self.email_address or self.address
+
+    def _email_address(self):
+        domain = getattr(settings, "INBOUND_EMAIL_DOMAIN", "")
+        return f"{self.address}@{domain}" if domain else ""
+
+    email_address = builtins.property(_email_address)

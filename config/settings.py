@@ -126,6 +126,18 @@ FIELD_ENCRYPTION_KEY = env("FIELD_ENCRYPTION_KEY", default="")
 SCHEDULER_SYNC_MINUTES = env.int("SCHEDULER_SYNC_MINUTES", default=15)
 DAILY_JOBS_HOUR = env.int("DAILY_JOBS_HOUR", default=6)  # local time of each workspace
 
+# QuickBooks Online: one Intuit developer app for the whole platform (each workspace connects its own company).
+# The redirect URI must be https://<your domain>/app/quickbooks/callback/ and be listed in the Intuit app.
+QBO_CLIENT_ID = env("QBO_CLIENT_ID", default="")
+QBO_CLIENT_SECRET = env("QBO_CLIENT_SECRET", default="")
+QBO_REDIRECT_URI = env("QBO_REDIRECT_URI", default="")
+QBO_ENVIRONMENT = env("QBO_ENVIRONMENT", default="sandbox")  # sandbox or production
+
+# Inbound email: messages sent to <inbox>@INBOUND_EMAIL_DOMAIN are posted by Mailgun or Postmark to /hooks/email/...
+INBOUND_EMAIL_DOMAIN = env("INBOUND_EMAIL_DOMAIN", default="")
+MAILGUN_WEBHOOK_SIGNING_KEY = env("MAILGUN_WEBHOOK_SIGNING_KEY", default="")
+POSTMARK_INBOUND_TOKEN = env("POSTMARK_INBOUND_TOKEN", default="")
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",

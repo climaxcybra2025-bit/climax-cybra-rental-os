@@ -1,6 +1,7 @@
 """One long-running process for all background work, so no Celery or Redis is needed.
 
-Every minute: deliver n8n events. Every SCHEDULER_SYNC_MINUTES: sync Hostaway.
+Every minute: deliver n8n events. Every SCHEDULER_SYNC_MINUTES: sync Hostaway and send
+confirmed payments to QuickBooks.
 Every 10 minutes: daily jobs (each runs once per workspace-local day).
 """
 
@@ -12,6 +13,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import close_old_connections
 
+from apps.integrations.accounting import push_all
 from apps.integrations.events import deliver_due
 from apps.integrations.jobs import run_daily_all, sync_all_channels
 
@@ -35,6 +37,7 @@ class Command(BaseCommand):
             self._safe("deliver", deliver_due)
             if options["once"] or now - last["sync"] >= settings.SCHEDULER_SYNC_MINUTES * 60:
                 self._safe("sync", sync_all_channels)
+                self._safe("quickbooks", push_all)
                 last["sync"] = now
             if options["once"] or now - last["daily"] >= 600:
                 self._safe("daily", run_daily_all)

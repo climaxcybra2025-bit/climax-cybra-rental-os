@@ -1,0 +1,6 @@
+{% load i18n %}
+<section class="card section">
+  <h2>{% translate "Accounting" %}</h2>
+  <ul class="list-plain">{% for r in external_refs %}<li><span>{% translate "Sent to QuickBooks" %}: {{ r.external_type }} #{{ r.external_id }}</span><span class="muted small">{{ r.created_at|date:"SHORT_DATETIME_FORMAT" }}</span></li>{% endfor %}</ul>
+  <p class="muted small">{% translate "Changes made here after sending are not copied to QuickBooks." %}</p>
+</section>

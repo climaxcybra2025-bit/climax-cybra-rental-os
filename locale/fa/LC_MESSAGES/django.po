@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 23:46+0000\n"
+"POT-Creation-Date: 2026-11-05 07:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,23 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: apps/integrations/models.py:22
+#: apps/integrations/models.py:25
 msgid "Hostaway (Airbnb, Booking.com, Vrbo)"
 msgstr "Hostaway (Airbnb، Booking.com، Vrbo)"
 
-#: apps/integrations/models.py:23
+#: apps/integrations/models.py:26
 msgid "Telegram bot"
 msgstr "ربات تلگرام"
 
-#: apps/integrations/models.py:24
+#: apps/integrations/models.py:27
 msgid "n8n workflows"
 msgstr "گردش‌کارهای n8n"
 
-#: apps/integrations/models.py:29
+#: apps/integrations/models.py:28
+msgid "QuickBooks Online"
+msgstr "QuickBooks Online"
+
+#: apps/integrations/models.py:33
 msgid "For example: Oceanway Hostaway account"
 msgstr "مثلاً: حساب Hostaway اوشن‌وی"
 
-#: apps/integrations/models.py:34
+#: apps/integrations/models.py:38
 msgid ""
 "Hostaway: account ID. Telegram: channel, e.g. @oceanway_rooms. n8n: webhook "
 "URL."
@@ -42,159 +46,163 @@ msgstr ""
 "Hostaway: شناسه حساب. تلگرام: کانال، مثلاً ‎@oceanway_rooms. n8n: نشانی "
 "وب‌هوک."
 
-#: apps/integrations/models.py:78
-#| msgid "Short stay (nightly)"
+#: apps/integrations/models.py:82
 msgid "Short stays (nightly)"
 msgstr "اقامت کوتاه (شبانه)"
 
-#: apps/integrations/models.py:79
-#| msgid "Fixed term"
+#: apps/integrations/models.py:83
 msgid "Monthly / fixed term"
 msgstr "ماهانه / مدت معین"
 
-#: apps/integrations/models.py:80
+#: apps/integrations/models.py:84
 msgid "Both"
 msgstr "هر دو"
 
-#: apps/integrations/models.py:83 apps/tenancies/models.py:180
+#: apps/integrations/models.py:87 apps/tenancies/models.py:180
 msgid "Draft"
 msgstr "پیش‌نویس"
 
-#: apps/integrations/models.py:84
+#: apps/integrations/models.py:88
 msgid "Ready to post"
 msgstr "آماده انتشار"
 
-#: apps/integrations/models.py:85
+#: apps/integrations/models.py:89
 msgid "Paused"
 msgstr "متوقف"
 
-#: apps/integrations/models.py:89
+#: apps/integrations/models.py:93
 msgid "One or two lines for the top of every post"
 msgstr "یکی دو خط برای بالای هر آگهی"
 
-#: apps/integrations/models.py:91
+#: apps/integrations/models.py:95
 msgid "One per line: Wi-Fi, laundry, parking..."
 msgstr "هر مورد در یک خط: وای‌فای، لباسشویی، پارکینگ..."
 
-#: apps/integrations/models.py:97
+#: apps/integrations/models.py:101
 msgid "How people reach you, e.g. WhatsApp number"
 msgstr "راه تماس، مثلاً شماره واتس‌اپ"
 
-#: apps/integrations/models.py:128
+#: apps/integrations/models.py:132
 msgid "Airbnb"
 msgstr "Airbnb"
 
-#: apps/integrations/models.py:129
+#: apps/integrations/models.py:133
 msgid "Booking.com"
 msgstr "Booking.com"
 
-#: apps/integrations/models.py:130
+#: apps/integrations/models.py:134
 msgid "Vrbo"
 msgstr "Vrbo"
 
-#: apps/integrations/models.py:131
+#: apps/integrations/models.py:135
 msgid "Telegram channel"
 msgstr "کانال تلگرام"
 
-#: apps/integrations/models.py:132
+#: apps/integrations/models.py:136
 msgid "Facebook group"
 msgstr "گروه فیسبوک"
 
-#: apps/integrations/models.py:133
+#: apps/integrations/models.py:137
 msgid "Facebook Marketplace"
 msgstr "فیسبوک مارکت‌پلیس"
 
-#: apps/integrations/models.py:134
+#: apps/integrations/models.py:138
 msgid "Kijiji"
 msgstr "Kijiji"
 
-#: apps/integrations/models.py:135
+#: apps/integrations/models.py:139
 msgid "Craigslist"
 msgstr "Craigslist"
 
-#: apps/integrations/models.py:136
+#: apps/integrations/models.py:140
 msgid "Zumper / PadMapper"
 msgstr "Zumper / PadMapper"
 
-#: apps/integrations/models.py:137
+#: apps/integrations/models.py:141
 msgid "Own website"
 msgstr "وب‌سایت خودمان"
 
-#: apps/integrations/models.py:138 apps/operations/models.py:24
+#: apps/integrations/models.py:142 apps/operations/models.py:24
 #: apps/people/models.py:32 apps/records/models.py:32
 #: apps/records/models.py:63 apps/tenancies/models.py:127
 msgid "Other"
 msgstr "سایر"
 
-#: apps/integrations/models.py:141
+#: apps/integrations/models.py:145
 msgid "Not posted"
 msgstr "منتشر نشده"
 
-#: apps/integrations/models.py:142 apps/web/resources.py:561
+#: apps/integrations/models.py:146 apps/web/resources.py:561
 msgid "Posted"
 msgstr "منتشر شده"
 
-#: apps/integrations/models.py:143
-#| msgid "Needs reply"
+#: apps/integrations/models.py:147
 msgid "Needs update"
 msgstr "نیاز به به‌روزرسانی"
 
-#: apps/integrations/models.py:144
+#: apps/integrations/models.py:148
 msgid "Removed"
 msgstr "حذف شده"
 
-#: apps/integrations/models.py:145 apps/integrations/models.py:189
+#: apps/integrations/models.py:149 apps/integrations/models.py:193
 msgid "Error"
 msgstr "خطا"
 
-#: apps/integrations/models.py:156
+#: apps/integrations/models.py:160
 msgid "Group name or link for hand-posted channels, e.g. Vancouver Rooms"
 msgstr ""
 "نام یا لینک گروه برای کانال‌هایی که دستی منتشر می‌شوند، مثلاً Vancouver "
 "Rooms"
 
-#: apps/integrations/models.py:159
+#: apps/integrations/models.py:163
 msgid "Hostaway listing ID, Telegram message ID or the channel's listing ID"
 msgstr "شناسه آگهی در Hostaway، شناسه پیام تلگرام یا شناسه آگهی در آن کانال"
 
-#: apps/integrations/models.py:183 apps/records/models.py:73
+#: apps/integrations/models.py:187 apps/records/models.py:73
 #: apps/tenancies/models.py:114
 msgid "Received"
 msgstr "دریافتی"
 
-#: apps/integrations/models.py:184 apps/records/models.py:74
+#: apps/integrations/models.py:188 apps/records/models.py:74
 #: apps/tenancies/models.py:181
 msgid "Sent"
 msgstr "ارسال شده"
 
-#: apps/integrations/models.py:187
+#: apps/integrations/models.py:191
 msgid "OK"
 msgstr "موفق"
 
-#: apps/integrations/models.py:188
-#| msgid "Swapped"
+#: apps/integrations/models.py:192
 msgid "Skipped"
 msgstr "رد شد"
 
-#: apps/integrations/models.py:255
+#: apps/integrations/models.py:259
 msgid "Changes made with this key are recorded under this user"
 msgstr "تغییراتی که با این کلید انجام شود به نام این کاربر ثبت می‌شود"
 
+#: apps/integrations/models.py:355
+msgid "The part before the @, for example oceanway-regan-st"
+msgstr "بخش پیش از @، مثلاً oceanway-regan-st"
+
+#: apps/integrations/models.py:364
+msgid ""
+"Used when the sender is not a known landlord, tenant or government office"
+msgstr ""
+"وقتی فرستنده صاحبخانه، مستأجر یا اداره دولتی شناخته‌شده نباشد، این نوع ثبت "
+"می‌شود"
+
 #: apps/integrations/postkit.py:29
 #, python-format
-#| msgid "per month"
 msgid "%(price)s per month"
 msgstr "ماهانه %(price)s"
 
 #: apps/integrations/postkit.py:31
 #, python-format
-#| msgid "per night"
 msgid "%(price)s per night"
 msgstr "هر شب %(price)s"
 
 #: apps/integrations/postkit.py:33
 #, python-format
-#| msgid "Deposit review"
 msgid "Deposit: %(price)s"
 msgstr "ودیعه: %(price)s"
 
@@ -204,7 +212,6 @@ msgid "Available from %(date)s"
 msgstr "قابل سکونت از %(date)s"
 
 #: apps/integrations/postkit.py:40
-#| msgid "Furniture"
 msgid "Furnished"
 msgstr "مبله"
 
@@ -362,7 +369,6 @@ msgid "Roommate roster"
 msgstr "نوبت نظافت هم‌خانه‌ها"
 
 #: apps/operations/models.py:94
-#| msgid "Turnover cleaning check"
 msgid "Turnover after checkout"
 msgstr "نظافت پس از تخلیه"
 
@@ -467,7 +473,7 @@ msgid "What is the problem?"
 msgstr "مشکل چیست؟"
 
 #: apps/portal/views.py:29 templates/web/detail.html:16
-#: templates/web/includes/connection_extra.html:25
+#: templates/web/includes/connection_extra.html:44
 msgid "Details"
 msgstr "جزئیات"
 
@@ -896,56 +902,104 @@ msgid "Stored encrypted. Leave blank to keep the saved value."
 msgstr ""
 "به‌صورت رمزنگاری‌شده ذخیره می‌شود. برای نگه داشتن مقدار قبلی خالی بگذارید."
 
-#: apps/web/integration_views.py:55
+#: apps/web/integration_views.py:73
 msgid "Only the owner or an admin can do this."
 msgstr "فقط مالک یا مدیر می‌تواند این کار را انجام دهد."
 
-#: apps/web/integration_views.py:68
+#: apps/web/integration_views.py:86
 #, python-format
 msgid "Connected to Hostaway. %(n)s listings found."
 msgstr "به Hostaway وصل شد. %(n)s آگهی پیدا شد."
 
-#: apps/web/integration_views.py:71
+#: apps/web/integration_views.py:89
 #, python-format
 msgid "Connected as @%(bot)s."
 msgstr "با نام ‎@%(bot)s وصل شد."
 
-#: apps/web/integration_views.py:75
+#: apps/web/integration_views.py:93
 msgid "Test event sent to n8n."
 msgstr "رویداد آزمایشی به n8n فرستاده شد."
 
-#: apps/web/integration_views.py:75
+#: apps/web/integration_views.py:93
 msgid "Test event queued; delivery failed."
 msgstr "رویداد آزمایشی در صف است؛ ارسال ناموفق بود."
 
-#: apps/web/integration_views.py:77
+#: apps/web/integration_views.py:95
 msgid "Turn the connection on first."
 msgstr "اول اتصال را روشن کنید."
 
-#: apps/web/integration_views.py:99
+#: apps/web/integration_views.py:117
 #, python-format
 msgid "Synced %(r)s bookings and %(m)s new messages."
 msgstr "%(r)s رزرو و %(m)s پیام جدید همگام شد."
 
-#: apps/web/integration_views.py:111
+#: apps/web/integration_views.py:129
 msgid "Posted."
 msgstr "منتشر شد."
 
-#: apps/web/integration_views.py:122
+#: apps/web/integration_views.py:140
 msgid "Marked as posted."
 msgstr "به‌عنوان منتشرشده علامت خورد."
 
-#: apps/web/integration_views.py:131
+#: apps/web/integration_views.py:149
 msgid "Write a reply first."
 msgstr "اول متن پاسخ را بنویسید."
 
-#: apps/web/integration_views.py:138
+#: apps/web/integration_views.py:156
 msgid "Reply sent to the guest."
 msgstr "پاسخ برای مهمان فرستاده شد."
 
-#: apps/web/integration_views.py:157
+#: apps/web/integration_views.py:175
 msgid "Key revoked."
 msgstr "کلید باطل شد."
+
+#: apps/web/integration_views.py:198
+msgid ""
+"QuickBooks is not set up on this server yet (QBO_CLIENT_ID and "
+"QBO_CLIENT_SECRET)."
+msgstr ""
+"QuickBooks هنوز روی این سرور راه‌اندازی نشده است (QBO_CLIENT_ID و "
+"QBO_CLIENT_SECRET)."
+
+#: apps/web/integration_views.py:213
+msgid "The QuickBooks sign-in could not be verified. Try again."
+msgstr "ورود به QuickBooks تأیید نشد. دوباره تلاش کنید."
+
+#: apps/web/integration_views.py:224
+msgid "QuickBooks access was not granted."
+msgstr "اجازه دسترسی به QuickBooks داده نشد."
+
+#: apps/web/integration_views.py:236
+msgid "Connected to QuickBooks. Now choose where each kind of payment goes."
+msgstr "به QuickBooks وصل شد. حالا مشخص کنید هر نوع پرداخت کجا ثبت شود."
+
+#: apps/web/integration_views.py:300
+#, python-format
+msgid "Saved. Confirmed payments from %(date)s on will be sent to QuickBooks."
+msgstr ""
+"ذخیره شد. پرداخت‌های تأییدشده از %(date)s به بعد به QuickBooks فرستاده "
+"می‌شوند."
+
+#: apps/web/integration_views.py:303
+msgid "Saved. Nothing is sent until you choose a start date."
+msgstr "ذخیره شد. تا تاریخ شروع را انتخاب نکنید چیزی فرستاده نمی‌شود."
+
+#: apps/web/integration_views.py:321
+#, python-format
+msgid "%(n)s sent; some need attention: %(e)s"
+msgstr "%(n)s مورد فرستاده شد؛ چند مورد نیاز به بررسی دارد: %(e)s"
+
+#: apps/web/integration_views.py:324
+#, python-format
+msgid "%(n)s payments sent to QuickBooks."
+msgstr "%(n)s پرداخت به QuickBooks فرستاده شد."
+
+#: apps/web/integration_views.py:340
+msgid ""
+"Disconnected from QuickBooks. Payments already sent stay in QuickBooks."
+msgstr ""
+"اتصال QuickBooks قطع شد. پرداخت‌هایی که قبلاً فرستاده شده‌اند در QuickBooks "
+"می‌مانند."
 
 #: apps/web/resources.py:77
 msgid "Properties"
@@ -954,6 +1008,7 @@ msgstr "ملک‌ها"
 #: apps/web/resources.py:78 apps/web/resources.py:126
 #: apps/web/resources.py:195 apps/web/resources.py:380
 #: apps/web/resources.py:427 apps/web/resources.py:495
+#: apps/web/resources.py:593
 msgid "Property"
 msgstr "ملک"
 
@@ -1059,7 +1114,6 @@ msgid "Inspections"
 msgstr "بازدیدها"
 
 #: apps/web/resources.py:158 apps/web/resources.py:521
-#| msgid "Settings"
 msgid "Listings"
 msgstr "آگهی‌ها"
 
@@ -1278,12 +1332,10 @@ msgid "Listing"
 msgstr "آگهی"
 
 #: apps/web/resources.py:527
-#| msgid "Stay"
 msgid "Stay type"
 msgstr "نوع اقامت"
 
 #: apps/web/resources.py:547
-#| msgid "Channel"
 msgid "Channels"
 msgstr "کانال‌ها"
 
@@ -1300,12 +1352,10 @@ msgid "Group / target"
 msgstr "گروه / مقصد"
 
 #: apps/web/resources.py:570 templates/web/layout.html:14
-#| msgid "Inspections"
 msgid "Connections"
 msgstr "اتصال‌ها"
 
 #: apps/web/resources.py:571
-#| msgid "Inspection"
 msgid "Connection"
 msgstr "اتصال"
 
@@ -1313,8 +1363,7 @@ msgstr "اتصال"
 msgid "Service"
 msgstr "سرویس"
 
-#: apps/web/resources.py:576
-#| msgid "Open"
+#: apps/web/resources.py:576 apps/web/resources.py:595
 msgid "On"
 msgstr "روشن"
 
@@ -1326,20 +1375,36 @@ msgstr "آخرین موفقیت"
 msgid "Last error"
 msgstr "آخرین خطا"
 
+#: apps/web/resources.py:588 templates/web/layout.html:15
+msgid "Email inboxes"
+msgstr "صندوق‌های ایمیل"
+
 #: apps/web/resources.py:589
+#| msgid "Email"
+msgid "Email inbox"
+msgstr "صندوق ایمیل"
+
+#: apps/web/resources.py:592 templates/portal/home.html:18
+msgid "Address"
+msgstr "آدرس"
+
+#: apps/web/resources.py:594
+msgid "Unknown senders are"
+msgstr "فرستنده ناشناس ثبت می‌شود به‌عنوان"
+
+#: apps/web/resources.py:604
 msgid "Portfolio"
 msgstr "املاک"
 
-#: apps/web/resources.py:590
+#: apps/web/resources.py:605
 msgid "Tenants"
 msgstr "مستأجران"
 
-#: apps/web/resources.py:591
+#: apps/web/resources.py:606
 msgid "Operations"
 msgstr "عملیات"
 
-#: apps/web/resources.py:592
-#| msgid "Heating"
+#: apps/web/resources.py:607
 msgid "Marketing"
 msgstr "بازاریابی"
 
@@ -1440,10 +1505,6 @@ msgstr "در شرایط تهدیدکننده جان، ابتدا با 911 تما
 msgid "My place"
 msgstr "محل اقامت من"
 
-#: templates/portal/home.html:18
-msgid "Address"
-msgstr "آدرس"
-
 #: templates/portal/home.html:19
 msgid "Room / space"
 msgstr "اتاق / فضا"
@@ -1504,7 +1565,7 @@ msgstr "هنوز پرداختی ثبت نشده است."
 msgid "My cleaning turns"
 msgstr "نوبت‌های نظافت من"
 
-#: templates/portal/layout.html:6 templates/web/layout.html:26
+#: templates/portal/layout.html:6 templates/web/layout.html:27
 #: templates/web/no_workspace.html:2
 msgid "Sign out"
 msgstr "خروج"
@@ -1552,7 +1613,7 @@ msgid "Forgot password?"
 msgstr "رمز عبور را فراموش کرده‌اید؟"
 
 #: templates/web/api_keys.html:2 templates/web/api_keys.html:4
-#: templates/web/layout.html:15
+#: templates/web/layout.html:16
 msgid "API keys"
 msgstr "کلیدهای API"
 
@@ -1569,7 +1630,7 @@ msgstr ""
 "سرآیند Authorization: Api-Key و سپس این کلید بسازید."
 
 #: templates/web/api_keys.html:9
-#: templates/web/includes/connection_extra.html:12
+#: templates/web/includes/connection_extra.html:31
 #: templates/web/includes/listing_channel_extra.html:13
 #: templates/web/includes/listing_extra.html:3
 msgid "Copy"
@@ -1616,7 +1677,6 @@ msgid "Revoke"
 msgstr "ابطال"
 
 #: templates/web/api_keys.html:23
-#| msgid "No tickets yet."
 msgid "No keys yet."
 msgstr "هنوز کلیدی ساخته نشده."
 
@@ -1776,7 +1836,7 @@ msgstr "%(name)s جدید"
 msgid "Cancel"
 msgstr "انصراف"
 
-#: templates/web/form.html:20
+#: templates/web/form.html:20 templates/web/qbo_mapping.html:28
 msgid "Save"
 msgstr "ذخیره"
 
@@ -1785,7 +1845,6 @@ msgid "Check and sync"
 msgstr "بررسی و همگام‌سازی"
 
 #: templates/web/includes/connection_extra.html:5
-#| msgid "Deposit deductions"
 msgid "Test connection"
 msgstr "آزمایش اتصال"
 
@@ -1793,16 +1852,72 @@ msgstr "آزمایش اتصال"
 msgid "Sync bookings now"
 msgstr "همگام‌سازی رزروها"
 
-#: templates/web/includes/connection_extra.html:9
+#: templates/web/includes/connection_extra.html:11
+#| msgid "Connection"
+msgid "Connected"
+msgstr "وصل است"
+
+#: templates/web/includes/connection_extra.html:13
+#, python-format
+#| msgid "%(n)s event waiting to be sent."
+#| msgid_plural "%(n)s events waiting to be sent."
+msgid "%(n)s confirmed payment from %(d)s on is waiting to be sent."
+msgid_plural "%(n)s confirmed payments from %(d)s on are waiting to be sent."
+msgstr[0] "%(n)s پرداخت تأییدشده از %(d)s به بعد در انتظار ارسال است."
+msgstr[1] "%(n)s پرداخت تأییدشده از %(d)s به بعد در انتظار ارسال است."
+
+#: templates/web/includes/connection_extra.html:14
+msgid "Choose a start date and accounts before anything is sent."
+msgstr "پیش از ارسال هر چیزی، تاریخ شروع و حساب‌ها را انتخاب کنید."
+
+#: templates/web/includes/connection_extra.html:16
+msgid "Accounts and start date"
+msgstr "حساب‌ها و تاریخ شروع"
+
+#: templates/web/includes/connection_extra.html:17
+#| msgid "Send a payment proof"
+msgid "Send payments now"
+msgstr "ارسال پرداخت‌ها"
+
+#: templates/web/includes/connection_extra.html:18
+msgid "Disconnect QuickBooks?"
+msgstr "اتصال QuickBooks قطع شود؟"
+
+#: templates/web/includes/connection_extra.html:18
+#| msgid "Test connection"
+msgid "Disconnect"
+msgstr "قطع اتصال"
+
+#: templates/web/includes/connection_extra.html:20
+msgid ""
+"Payments are sent once, when confirmed. If you change a payment after it was"
+" sent, change it in QuickBooks too."
+msgstr ""
+"هر پرداخت یک بار و پس از تأیید فرستاده می‌شود. اگر بعد از ارسال آن را تغییر "
+"دهید، در QuickBooks هم تغییر دهید."
+
+#: templates/web/includes/connection_extra.html:22
+#| msgid "Connections"
+msgid "Connect to QuickBooks"
+msgstr "اتصال به QuickBooks"
+
+#: templates/web/includes/connection_extra.html:24
+msgid ""
+"QuickBooks is not set up on this server yet. The administrator needs to add "
+"the Intuit app keys."
+msgstr ""
+"QuickBooks هنوز روی این سرور راه‌اندازی نشده است. مدیر سیستم باید کلیدهای "
+"برنامه Intuit را اضافه کند."
+
+#: templates/web/includes/connection_extra.html:27
 msgid "Secret saved"
 msgstr "رمز ذخیره شده"
 
-#: templates/web/includes/connection_extra.html:9
-#| msgid "No tickets yet."
+#: templates/web/includes/connection_extra.html:27
 msgid "No secret saved yet"
 msgstr "هنوز رمزی ذخیره نشده"
 
-#: templates/web/includes/connection_extra.html:11
+#: templates/web/includes/connection_extra.html:30
 msgid ""
 "In Hostaway, go to Settings, Integrations, Webhooks and add this unified "
 "webhook URL. Keep it private: anyone with it can ask Rental OS to re-check a"
@@ -1812,7 +1927,7 @@ msgstr ""
 "یکپارچه را اضافه کنید. آن را محرمانه نگه دارید: هر کسی که آن را داشته باشد "
 "می‌تواند از Rental OS بخواهد یک رزرو را دوباره بررسی کند."
 
-#: templates/web/includes/connection_extra.html:14
+#: templates/web/includes/connection_extra.html:33
 msgid ""
 "Create a bot with @BotFather, paste its token as the secret, add the bot as "
 "an admin of your channel, and put the channel name (for example "
@@ -1821,7 +1936,7 @@ msgstr ""
 "با ‎@BotFather یک ربات بسازید، توکن آن را در قسمت رمز بگذارید، ربات را مدیر "
 "کانال کنید و نام کانال (مثلاً ‎@oceanway_rooms) را در شناسه حساب وارد کنید."
 
-#: templates/web/includes/connection_extra.html:16
+#: templates/web/includes/connection_extra.html:35
 msgid ""
 "Put your n8n Webhook node URL in Account ID. If you save a signing secret, "
 "every request carries an X-RentalOS-Signature header (sha256 HMAC of the "
@@ -1831,36 +1946,35 @@ msgstr ""
 "کنید، هر درخواست سرآیند X-RentalOS-Signature (HMAC با sha256 از بدنه) دارد "
 "تا n8n آن را بررسی کند."
 
-#: templates/web/includes/connection_extra.html:17
+#: templates/web/includes/connection_extra.html:36
 #, python-format
 msgid "%(n)s event waiting to be sent."
 msgid_plural "%(n)s events waiting to be sent."
 msgstr[0] "%(n)s رویداد در انتظار ارسال است."
 msgstr[1] "%(n)s رویداد در انتظار ارسال است."
 
-#: templates/web/includes/connection_extra.html:18
+#: templates/web/includes/connection_extra.html:37
 msgid "Event"
 msgstr "رویداد"
 
-#: templates/web/includes/connection_extra.html:18
-#: templates/web/includes/connection_extra.html:25
+#: templates/web/includes/connection_extra.html:37
+#: templates/web/includes/connection_extra.html:44
 msgid "When"
 msgstr "زمان"
 
-#: templates/web/includes/connection_extra.html:24
+#: templates/web/includes/connection_extra.html:43
 msgid "Recent activity"
 msgstr "فعالیت‌های اخیر"
 
-#: templates/web/includes/connection_extra.html:25
+#: templates/web/includes/connection_extra.html:44
 msgid "What"
 msgstr "چه چیزی"
 
-#: templates/web/includes/connection_extra.html:25
+#: templates/web/includes/connection_extra.html:44
 msgid "Result"
 msgstr "نتیجه"
 
-#: templates/web/includes/connection_extra.html:27
-#| msgid "Nothing here yet."
+#: templates/web/includes/connection_extra.html:46
 msgid "Nothing yet."
 msgstr "هنوز چیزی نیست."
 
@@ -1875,7 +1989,6 @@ msgstr ""
 "از طریق کانال رزرو (Airbnb، Booking.com، Vrbo) فرستاده و اینجا ذخیره می‌شود."
 
 #: templates/web/includes/correspondence_extra.html:7
-#| msgid "Needs reply"
 msgid "Send reply"
 msgstr "ارسال پاسخ"
 
@@ -1929,6 +2042,19 @@ msgstr ""
 "این متن را در گروه‌های فیسبوک، مارکت‌پلیس، Kijiji یا Craigslist بگذارید. "
 "عکس‌ها را از بخش فایل‌ها اضافه کنید. نشانی خیابان هرگز در متن نمی‌آید."
 
+#: templates/web/includes/payment_extra.html:3
+#| msgid "Amount"
+msgid "Accounting"
+msgstr "حسابداری"
+
+#: templates/web/includes/payment_extra.html:4
+msgid "Sent to QuickBooks"
+msgstr "فرستاده‌شده به QuickBooks"
+
+#: templates/web/includes/payment_extra.html:5
+msgid "Changes made here after sending are not copied to QuickBooks."
+msgstr "تغییراتی که پس از ارسال اینجا بدهید به QuickBooks منتقل نمی‌شود."
+
 #: templates/web/layout.html:4
 msgid "Main menu"
 msgstr "منوی اصلی"
@@ -1937,11 +2063,11 @@ msgstr "منوی اصلی"
 msgid "Settings"
 msgstr "تنظیمات"
 
-#: templates/web/layout.html:16
+#: templates/web/layout.html:17
 msgid "Admin and users"
 msgstr "مدیریت و کاربران"
 
-#: templates/web/layout.html:22
+#: templates/web/layout.html:23
 msgid "Menu"
 msgstr "منو"
 
@@ -1972,6 +2098,61 @@ msgid ""
 "Your login is not linked to a company workspace. Ask your administrator to "
 "add you."
 msgstr "حساب شما به هیچ شرکتی متصل نیست. از مدیر بخواهید شما را اضافه کند."
+
+#: templates/web/qbo_mapping.html:2
+msgid "QuickBooks accounts"
+msgstr "حساب‌های QuickBooks"
+
+#: templates/web/qbo_mapping.html:5
+msgid "Where payments go in QuickBooks"
+msgstr "هر پرداخت در QuickBooks کجا ثبت شود"
+
+#: templates/web/qbo_mapping.html:9
+#| msgid "Starts with"
+msgid "Start date"
+msgstr "تاریخ شروع"
+
+#: templates/web/qbo_mapping.html:10
+msgid ""
+"Only payments confirmed and dated on or after this day are sent. Earlier "
+"ones are left alone, so nothing already in QuickBooks is entered twice."
+msgstr ""
+"فقط پرداخت‌های تأییدشده با تاریخ همین روز یا بعد از آن فرستاده می‌شوند. "
+"پرداخت‌های قبلی دست نمی‌خورند تا چیزی دو بار در QuickBooks ثبت نشود."
+
+#: templates/web/qbo_mapping.html:14
+msgid "Money received (sales receipts)"
+msgstr "دریافتی‌ها (رسید فروش)"
+
+#: templates/web/qbo_mapping.html:15
+msgid ""
+"Pick the product or service for each kind of payment. Deposits usually go to"
+" a product linked to a liability account."
+msgstr ""
+"برای هر نوع پرداخت، کالا یا خدمت مربوط را انتخاب کنید. ودیعه معمولاً به "
+"کالایی وصل می‌شود که به حساب بدهی مرتبط است."
+
+#: templates/web/qbo_mapping.html:17 templates/web/qbo_mapping.html:24
+msgid "— do not send —"
+msgstr "— ارسال نشود —"
+
+#: templates/web/qbo_mapping.html:18
+#| msgid "Deposit"
+msgid "Deposit to"
+msgstr "واریز به"
+
+#: templates/web/qbo_mapping.html:18
+msgid "Undeposited funds (QuickBooks default)"
+msgstr "وجوه واریزنشده (پیش‌فرض QuickBooks)"
+
+#: templates/web/qbo_mapping.html:22
+msgid "Money paid (expenses)"
+msgstr "پرداختی‌ها (هزینه‌ها)"
+
+#: templates/web/qbo_mapping.html:25
+#| msgid "Paid on"
+msgid "Paid from"
+msgstr "پرداخت از"
 
 #~ msgid "Areas"
 #~ msgstr "قسمت‌ها"

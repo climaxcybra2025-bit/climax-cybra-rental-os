@@ -2,11 +2,30 @@
 <section class="card section">
   <div class="section-head"><h2 style="margin:0">{% translate "Check and sync" %}</h2>
     <div style="display:flex;gap:8px">
-      <form method="post" action="{% url 'web:connection-test' obj.pk %}">{% csrf_token %}<button class="btn" type="submit">{% translate "Test connection" %}</button></form>
+      {% if obj.provider != "quickbooks" %}<form method="post" action="{% url 'web:connection-test' obj.pk %}">{% csrf_token %}<button class="btn" type="submit">{% translate "Test connection" %}</button></form>{% endif %}
       {% if obj.provider == "hostaway" %}<form method="post" action="{% url 'web:connection-sync' obj.pk %}">{% csrf_token %}<button class="btn btn-primary" type="submit">{% translate "Sync bookings now" %}</button></form>{% endif %}
     </div>
   </div>
+  {% if obj.provider == "quickbooks" %}
+    {% if qbo_connected %}
+      <p><span class="badge badge-good">{% translate "Connected" %}</span> {{ obj.settings.company_name }}</p>
+      {% if qbo_start %}
+        <p>{% blocktranslate with d=qbo_start|date:"SHORT_DATE_FORMAT" count n=qbo_pending %}{{ n }} confirmed payment from {{ d }} on is waiting to be sent.{% plural %}{{ n }} confirmed payments from {{ d }} on are waiting to be sent.{% endblocktranslate %}</p>
+      {% else %}<p class="badge badge-warn">{% translate "Choose a start date and accounts before anything is sent." %}</p>{% endif %}
+      <div class="toolbar">
+        <a class="btn" href="{% url 'web:qbo-mapping' obj.pk %}">{% translate "Accounts and start date" %}</a>
+        <form method="post" action="{% url 'web:qbo-push' obj.pk %}">{% csrf_token %}<button class="btn btn-primary" type="submit">{% translate "Send payments now" %}</button></form>
+        <form method="post" action="{% url 'web:qbo-disconnect' obj.pk %}">{% csrf_token %}<button class="btn btn-danger" type="submit" data-confirm="{% translate 'Disconnect QuickBooks?' %}">{% translate "Disconnect" %}</button></form>
+      </div>
+      <p class="muted small">{% translate "Payments are sent once, when confirmed. If you change a payment after it was sent, change it in QuickBooks too." %}</p>
+    {% elif qbo_ready %}
+      <form method="post" action="{% url 'web:qbo-connect' obj.pk %}">{% csrf_token %}<button class="btn btn-primary" type="submit">{% translate "Connect to QuickBooks" %}</button></form>
+    {% else %}
+      <p class="badge badge-warn">{% translate "QuickBooks is not set up on this server yet. The administrator needs to add the Intuit app keys." %}</p>
+    {% endif %}
+  {% else %}
   <p>{% if obj.has_secret %}<span class="badge badge-good">{% translate "Secret saved" %}</span>{% else %}<span class="badge badge-warn">{% translate "No secret saved yet" %}</span>{% endif %}</p>
+  {% endif %}
   {% if webhook_url %}
     <p>{% translate "In Hostaway, go to Settings, Integrations, Webhooks and add this unified webhook URL. Keep it private: anyone with it can ask Rental OS to re-check a booking." %}</p>
     <div class="toolbar"><input id="hook-url" readonly value="{{ webhook_url }}"><button class="btn btn-sm" type="button" data-copy="#hook-url">{% translate "Copy" %}</button></div>
